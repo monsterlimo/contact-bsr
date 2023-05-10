@@ -3,7 +3,80 @@
   {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+
 {% block header %}
+  {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+  {% set html %}
+    <p class="govuk-body">We’d like to use analytics cookies so we can understand how you use this site.</p>
+    <p class="govuk-body">We also use essential cookies to remember if you’ve accepted analytics cookies.</p>
+  {% endset %}
+
+  {% set acceptHtml %}
+    <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="cookies">change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+  {% set rejectHtml %}
+    <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="cookies">change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+
+
+    {{ govukCookieBanner({
+      classes: "js-cookies-banner",
+      messages: [
+        {
+            headingText: "Cookies on this government service",
+            html: html,
+            actions: [
+                {
+                    text: "Accept analytics cookies",
+                    type: "button",
+                    classes: "js-cookies-button-accept"
+                },
+                {
+                    text: "Reject analytics cookies",
+                    type: "button",
+                    classes: "js-cookies-button-reject"
+                },
+                {
+                    text: "View cookie preferences",
+                    href: "cookies"
+                }
+            ],
+            classes: "js-question-banner"
+        },
+        {
+            html: acceptHtml,
+            role: "alert",
+            actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    classes: "js-hide"
+                }
+            ],
+            classes: "js-cookies-accepted",
+            hidden: true
+        },
+        {
+            html: rejectHtml,
+            role: "alert",
+            actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    classes: "js-hide"
+                }
+            ],
+            classes: "js-cookies-rejected",
+            hidden: true
+        }
+    ]
+    }) }}
+
+
+
   <!-- Blank header with no service name for the start page -->
   {{ govukHeader() }}
 {% endblock %}
@@ -52,4 +125,49 @@
       </form>
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+
+  <script>
+    var acceptButton = document.querySelector('.js-cookies-button-accept')
+    var rejectButton = document.querySelector('.js-cookies-button-reject')
+
+    var acceptedBanner = document.querySelector('.js-cookies-accepted')
+    var rejectedBanner = document.querySelector('.js-cookies-rejected')
+    var questionBanner = document.querySelector('.js-question-banner')
+    var cookieBanner = document.querySelector('.js-cookies-banner')
+
+    function showBanner(banner) {
+        questionBanner.setAttribute('hidden', 'hidden')
+        banner.removeAttribute('hidden')
+
+        // Shift focus to the banner
+        banner.setAttribute('tabindex', '-1')
+        banner.focus()
+
+        banner.addEventListener('blur', function () {
+            banner.removeAttribute('tabindex')
+        })
+    }
+
+    acceptButton.addEventListener('click', function (event) {
+        showBanner(acceptedBanner)
+        event.preventDefault()
+    })
+
+    rejectButton.addEventListener('click', function (event) {
+        showBanner(rejectedBanner)
+        event.preventDefault()
+    })
+
+    acceptedBanner.querySelector('.js-hide').addEventListener('click', function() {
+      cookieBanner.setAttribute('hidden', 'hidden')
+    })
+
+    rejectedBanner.querySelector('.js-hide').addEventListener('click', function() {
+      cookieBanner.setAttribute('hidden', 'hidden')
+    })
+  </script>
+
 {% endblock %}
