@@ -32,11 +32,20 @@
         </div>
       </div>
 
+      {% if data['contact-number'] == null and data['contact-email'] == null and data['contact-first-name'] == null %}
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p>You have chosen to complain anonymously and not provided us with your contact details. We cannot keep you updated with any actions we may take.</p>
+      <p>If you want us to update you, you must provide us with a way to contact you, for example your phone number or email address. You can do this by email or phone quoting your reference number.</p>
+      {% else %}
       <p>We have sent you a confirmation email that includes your reference number.</p>
-
-
       <h2 class="govuk-heading-m">What happens next</h2>
       <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "advice" %} if we have to consult building safety experts {% endif %}.</p>
+      {% endif %}
+
+      
+
+
+      
       {% if data['enquiry-about'] == "complaint" %}
         <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>
       {% endif %}

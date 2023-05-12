@@ -15,9 +15,20 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
 
+    {% set emails %}
+      <p><a href="sprint-8/emails/complaint-email">Complaint - Confirmation email - contact provided</a></p>
+      <p><a href="sprint-8/emails/complaint-email-anon">Complaint - Confirmation email - anon</a></p>
+      <p><a href="sprint-8/emails/question-email">Question - Confirmation email</a></p>
+
+    {% endset %}
+
     <h2 class="govuk-heading-m">Current</h2>
     <p><a href="sprint-8/start-advice">Sprint 8 (v5) - Advice and complaints</a></p>
-    <p><a href="sprint-8/confirmation-email">Sprint 8 (v5) - Confirmation email</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emails
+    }) }}
+    
 
     <h2 class="govuk-heading-m">Private Beta</h2>
     <p>to do</p>
