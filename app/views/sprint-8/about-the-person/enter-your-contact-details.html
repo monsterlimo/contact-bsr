@@ -25,11 +25,17 @@
           
         }) %}
         {% if data['enquiry-about'] == "complaint" %}
-        <p>We need your contact details so we can tell you what we are doing about your complaint.</p>
+          <p>We need your contact details so we can tell you what we are doing about your complaint.</p>
         {% endif %}
+        <p>Without your contact details we cannot update you.</p>
+        {#
+        {% if data['enquiry-about'] == "complaint" %}
+          <p>To make an anonymous complaint, click on the Continue button without entering your name.</p>
+        {% endif %}
+        #}
           {{ govukInput({
             label: {
-              text: 'Contact number'
+              text: 'Contact number (optional)'
             },
             id: "contact-number",
             name: "contact-number",
@@ -37,7 +43,7 @@
           }) }}
           {{ govukInput({
             label: {
-              text: 'Contact email'
+              text: 'Contact email (optional)'
             },
             id: "contact-email",
             name: "contact-email",

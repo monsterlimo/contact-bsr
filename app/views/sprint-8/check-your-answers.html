@@ -229,7 +229,7 @@
               text: "Your name"
             },
             value: {
-              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+              text: "You have made an anonymous complaint" if data['contact-first-name'] == null and data['contact-last-name'] == null else (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
             },
             actions: {
               items: [
@@ -246,7 +246,7 @@
               text: "Contact details"
             },
             value: {
-              html: (data['contact-email'] or "john@test.com") + "<br>" + (data['contact-number'] or "012345678")
+              html: "You have not provided contact details. We will not be able to update you with any action we take about your complaint" if data['contact-email'] == null and data['contact-number'] == null else (data['contact-email'] or "john@test.com") + "<br>" + (data['contact-number'] or "012345678")
             },
             actions: {
               items: [

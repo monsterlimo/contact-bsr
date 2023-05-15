@@ -24,11 +24,13 @@
           }
         }) %}
         {% if data['enquiry-about'] == "complaint" %}
-        <p>We'll ask you later in this service whether or not you want us to share your details with anyone else, such as the building's landlord or management company.</p>
+        <p>You can make an anonymous complaint, share your details with only the Building Safety Regulator (BSR), or share your details with BSR and whoever is accountable for the safety of the building, such as the landlord or management company.</p>
+
+        <p>To make an anonymous complaint, click on the Continue button without entering your name.</p>
         {% endif %}
           {{ govukInput({
             label: {
-              text: 'First name'
+              text: 'First name (optional)'
             },
             id: "contact-first-name",
             name: "contact-first-name",
@@ -37,7 +39,7 @@
           }) }}
           {{ govukInput({
             label: {
-              text: 'Last name'
+              text: 'Last name (optional)'
             },
             id: "contact-last-name",
             name: "contact-last-name",
