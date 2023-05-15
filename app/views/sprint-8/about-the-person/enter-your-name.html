@@ -25,43 +25,34 @@
         }) %}
         {% if data['enquiry-about'] == "complaint" %}
 
-        <p>To make an anonymous complaint, click on the Continue button without entering your name.</p>
+        <p>If you prefer not to provide us with your name or contact details, you can ask a question or make a complaint via a third party who can act on your behalf.</p>
 
+{#
         {% set detailsContent %}
           <p>You can choose to:</p>
-
           <ul class="govuk-list govuk-list--bullet">
             <li>make an anonymous complaint. Neither BSR or whoever is accountable for safety in the building will know your name. But we won't be able to tell you what action we may take about your complaint</li>
             <li>tell only BSR who you are. We won't share your name or contact details with whoever is accountable for building safety. But we will update you with any action we may take</li>
             <li>allow us to share your name and contact details with whoever is accountable for building safety.</li>
           </ul>
-
         {% endset %}
 
         {{ govukDetails({
           summaryText: "Choose what information you share about yourself",
           html: detailsContent
         }) }}
-
+#}
         {% endif %}
           {{ govukInput({
             label: {
-              text: 'First name (optional)'
+              text: 'Full name'
             },
-            id: "contact-first-name",
-            name: "contact-first-name",
-            value: data['contact-first-name'],
+            id: "contact-full-name",
+            name: "contact-full-name",
+            value: data['contact-full-name'],
             classes: "govuk-input--width-20"
           }) }}
-          {{ govukInput({
-            label: {
-              text: 'Last name (optional)'
-            },
-            id: "contact-last-name",
-            name: "contact-last-name",
-            value: data['contact-last-name'],
-            classes: "govuk-input--width-20"
-          }) }}
+         
         {% endcall %}
 
         {{ govukButton({
