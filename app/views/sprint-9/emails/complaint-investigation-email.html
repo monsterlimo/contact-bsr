@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+<div class="email-heading"><p class="govuk-heading-m">Email template</p></div>
+{% endblock %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+body.govuk-template__body {
+  background-color: lightgrey;
+}
+
+.email-heading {
+  height: 70px;
+  background-color: black;
+  width: 1040px;
+  margin: auto;
+}
+
+.email-heading p {
+  color: white;
+  padding: 20px 40px 20px 40px;
+  
+}
+
+.govuk-width-container {
+  //max-width: 800px;
+  background-color: white;
+  padding: 0 40px 40px 40px;
+}
+  
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      <h1 class="govuk-heading-l"> Complaint to the Building Safety Regulator</h1>
+
+      <p>We have opened an investigation into your complaint about Whitehall 2, LS1.</p>
+
+      <h2 class="govuk-heading-m">Reference number</h2> 
+
+      <p><strong>HDJ2123F</strong></p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p>The building Safety Regulator (BSR) will raise your complaint with the relevant accountable persons or organisations.</p> 
+
+      <p>We will not share your name or details if you told us you wanted to remain anonymous when you submitted your complaint.</p> 
+
+      <p>If we need more information from you during our investigation, we will email you.</p> 
+
+      <p>We will email you with the outcome of our investigation and tell you what, if any, enforcement action we are going to take.</p> 
+
+      <p>Investigations take time. If you don’t hear from us after nn working days, contact us, quoting your reference number.</p>
+
+      <p>Email or phone BSR on 0300 790 6787 if you don’t hear from us after 21 working days, contact BSR, quoting your reference number.</p>
+
+      <p>BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

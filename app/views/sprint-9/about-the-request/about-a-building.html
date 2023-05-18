@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+{% set title = "Is your question about a building?" if data['enquiry-about'] == "advice" else "Is your complaint about a building?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "about-a-building",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes" if data['enquiry-about'] == "advice" else "Yes it relates to a specific building"
+            },
+            {
+              value: "no",
+              text: "No, I need to ask a question which is not related to a specific building" if data['enquiry-about'] == "advice" else "No, it does not relate to a specific building"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

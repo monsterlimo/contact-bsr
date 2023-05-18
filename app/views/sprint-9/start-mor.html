@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+{% set serviceName = "Make a mandatory occurrence report" %}
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          {% if serviceName %} {{ serviceName }} {% endif %}
+        </h1>
+
+        <p>Use this service to make a mandatory occurrence report (MOR) to the Building Safety Regulator (BSR).</p>
+
+        <p>Make an MOR if you are:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an accountable person (AP) or principal accountable person (PAP)</li>
+          <li>principal contractor or principal designer.</li>
+        </ul>
+
+        <p>If you are an AP or PAP, you must make a MOR for an occupied building in the event of a safety occurrence which risks structural failure or spread of fire.</p>
+
+        <p>If you are a principal contractor or principal designer, you must make an MOR in the event of a safety occurrence which risks fire safety risk or structural failure when a building is under construction or in design.</p>
+
+        <p>You commit a criminal offence if you do not make a MOR within 10 days of becoming aware of an occurrence.</p>
+
+        <p><a href="">Read the guidance on what occurrences should be reported. (opens in a new tab)</a></p> 
+
+        <p>If you are another accountable or responsible person for a building, and you consider a MOR should have been made, but has not, you should <a href="">make a complaint to BSR</a>.</p>
+
+        <h2 class="govuk-heading-m">If you can’t use this service</h2>
+
+        <p>If you cannot use the online service, call BSR on 0300 790 6787 and we'll complete it for you. BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+        <p>A translation service is available if you would prefer to speak in a language other than English.</p>
+
+        {{ govukButton({
+          text: "Start now",
+          isStartButton: true
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

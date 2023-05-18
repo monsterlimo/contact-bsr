@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+{% set title = "What type of occurrence are you reporting?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukCheckboxes({
+          name: "occurrence-type",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+            {
+              value: "risk of structural failure",
+              text: "risk of structural failure"
+            },
+            {
+              value: "risk of fire spreading",
+              text: "risk of fire spreading"
+            } if data['building-status'] == "occupied" or data['building-status'] == "complete but not occupied",
+            {
+              value: "fire safety",
+              text: "fire safety"
+            } if data['building-status'] == "in design" or data['building-status'] == "in construction"
+          ]
+        }) }}         
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

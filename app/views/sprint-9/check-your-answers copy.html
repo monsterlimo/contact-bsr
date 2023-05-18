@@ -1,0 +1,462 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check your answers" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <p>Review the information you want to send us</p>
+
+      <h2 class="govuk-heading-m">About the enquiry</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Enquiry about"
+            },
+            value: {
+              text: (data['enquiry-about'] | capitalize) or "Advice"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-contact/enquiry-about",
+                  text: "Change",
+                  visuallyHiddenText: "previous application number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Advice you have asked for" if data["enquiry-about"] == "advice" else "Description of your complaint"
+            },
+            value: {
+              text: data['enquiry-description'] or "Need some guidance on a new high rise building"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-description",
+                  text: "Change",
+                  visuallyHiddenText: "licence type"
+                }
+              ]
+            }
+          } if data['enquiry-about'] != "mor"
+        ]
+      }) }}
+
+      {% if data['about-a-building'] == 'yes'  %}
+      <h2 class="govuk-heading-m">About the building</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: data['address-line-1'] + "<br>" + data['address-line-2'] + "<br>" + data['address-town'] + "<br>" + data['address-county'] + "<br>" + data['address-postcode']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/do-you-know-the-address",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          } if data['address-known'] == 'yes',
+          {
+            key: {
+              text: "Building occupied?"
+            },
+            value: {
+              text: (data['building-status'] | capitalize) or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/is-the-building-occupied",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-size'] | capitalize) or "7 or more floors"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/how-big-is-the-building",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of residential units"
+            },
+            value: {
+              text: (data['number-units'] | capitalize) or "2 or more units"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/number-of-units",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">About you</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Your name"
+            },
+            value: {
+              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Relationship to the building"
+            },
+            value: {
+              text: (data['building-relationship'] | capitalize) or "Principle accountable person"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/relationship-to-the-building",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          } if data['about-a-building'] == "yes",
+          {
+            key: {
+              text: "Contact details"
+            },
+            value: {
+              html: (data['contact-email'] or "john@test.com") + "<br>" + (data['contact-number'] or "012345678")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-contact-number",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    {% if data['enquiry-about'] == 'mor'  %}
+
+      <h2 class="govuk-heading-m">About the occurrence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "In what capacity are you making a MOR?"
+            },
+            value: {
+              text: (data['mor-submitter-role'] | capitalize) or "Principle accountable person"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/reporter-relationship",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence type"
+            },
+            value: {
+              text: data['occurrence-type']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-type",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence date"
+            },
+            value: {
+              text: (data['occurrence-date-day'] or "10") + " " + (data['occurrence-date-month'] or "5") + " " + (data['occurrence-date-year' or 2022)]
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-date",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence reporter"
+            },
+            value: {
+              html: (data['reporter-first-name'] or "Jane") + " " + (data['reporter-last-name'] or "Wilson") + "<br>" + (data['reporter-email'] or "jane@test.com")  + "<br>" + (data['reporter-relationship'] or "Visitor")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-reporter",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence details"
+            },
+            value: {
+              text: data['occurrence-details'] or "Details of the occurrence"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    {% endif %}
+
+
+    {% if data['enquiry-about'] == 'complaint'  %}
+
+      <h2 class="govuk-heading-m">About the accountable person</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Have you contacted them before?"
+            },
+            value: {
+              text: data['contacted-ap'] | capitalize or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/have-you-contacted-the-ap",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Their contact details"
+            },
+            value: {
+              html: (data['ap-name'] or "Alan Johnson") + "<br>" + (data['ap-email'] or "alan@test.com") + "<br>" + (data['ap-phone'] or "0192837465") + "<br>" + data['ap-address']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "Their role"
+            },
+            value: {
+              text: data['ap-relationship'] or "Landlord"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/ap-relationship",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "Date contacted"
+            },
+            value: {
+              html: (data['ap-contacted-date-day'] or "20") + " " + (data['ap-contacted-date-month'] or "1") + " " + (data['ap-contacted-date-year'] or "2023")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/when-contacted-ap",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "Can we share your details with them?"
+            },
+            value: {
+              html: data['share-contact-with-ap'] | capitalize or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/share-contact-with-ap",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes'
+        ]
+      }) }}
+
+      {% endif %}
+
+      {% if data['enquiry-about'] != 'advice'  %}
+
+      <h2 class="govuk-heading-m">Supporting information</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Number of supporting documents"
+            },
+            value: {
+              text: "10"
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-evidence/review-uploads",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['supporting-evidence'] == "yes",
+          {
+            key: {
+              text: "Number of supporting documents"
+            },
+            value: {
+              text: "No supporting information supplied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-evidence/do-you-have-any-evidence",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['supporting-evidence'] == "no"
+
+        ]
+      }) }}
+
+      {% endif %}
+
+      <form action="" method="post">
+        <input type="hidden" name="answers-checked" value="true">
+        {{ govukButton({
+          text: "Accept and send"
+        }) }}
+      </form>
+   
+    </div>
+  </div>
+
+{% endblock %}

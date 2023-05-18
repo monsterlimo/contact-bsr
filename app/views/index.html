@@ -15,21 +15,27 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
 
-    {% set emails %}
+    {% set emailsV6 %}
+      <p><a href="sprint-9/emails/complaint-email">Complaint - Confirmation email - contact provided</a></p>
+      <p><a href="sprint-9/emails/complaint-investigation-email">Complaint - Investigation email</a></p>
+      <p><a href="sprint-9/emails/complaint-enforcement-email">Complaint - Enforcement email</a></p>
+      <p><a href="sprint-9/emails/question-email">Question - Confirmation email</a></p>
+    {% endset %}
+
+    {% set emailsV5 %}
       <p><a href="sprint-8/emails/complaint-email">Complaint - Confirmation email - contact provided</a></p>
       <!--<p><a href="sprint-8/emails/complaint-email-no-contact">Complaint - Confirmation email - no contact details</a></p>-->
       <p><a href="sprint-8/emails/complaint-investigation-email">Complaint - Investigation email</a></p>
       <p><a href="sprint-8/emails/complaint-enforcement-email">Complaint - Enforcement email</a></p>
       <p><a href="sprint-8/emails/question-email">Question - Confirmation email</a></p>
       <!--<p><a href="sprint-8/emails/more-info-email">Additional info required - email</a></p>-->
-
     {% endset %}
 
     <h2 class="govuk-heading-m">Current</h2>
-    <p><a href="sprint-8/start-advice">Sprint 8 (v5) - Advice and complaints</a></p>
+    <p><a href="sprint-9/start-advice">Sprint 9 (v6) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",
-      html: emails
+      html: emailsV6
     }) }}
     
 <!--
@@ -37,6 +43,11 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     <p>to do</p>
 -->
     <h2 class="govuk-heading-m">Alpha</h2>
+    <p><a href="sprint-8/start-advice">Sprint 8 (v5) - Advice and complaints</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emails
+    }) }}
     <p><a href="sprint-7/start-advice">Sprint 7 (v4.5) - Advice and complaints</a></p>
     <p><a href="sprint-7/confirmation-email">Sprint 7 (v4.5) - Confirmation email</a></p>
     <p><a href="sprint-6/start-advice">Sprint 6 (v4) - Advice and complaints</a></p>

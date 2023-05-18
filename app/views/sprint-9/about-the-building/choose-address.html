@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+{% set title = "Select the address of the building" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "building-address",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "7 addresses found"
+          },
+          items: [
+            {
+              value: "1 Example Street, Examplton, EX1 2AB",
+              text: "1 Example Street, Examplton, EX1 2AB"
+            },
+            {
+              value: "2 Example Street, Examplton, EX1 2AB",
+              text: "2 Example Street, Examplton, EX1 2AB"
+            },
+            {
+              value: "3 Example Street, Examplton, EX1 2AB",
+              text: "3 Example Street, Examplton, EX1 2AB"
+            },
+            {
+              value: "4 Example Street, Examplton, EX1 2AB",
+              text: "4 Example Street, Examplton, EX1 2AB"
+            },
+            {
+              value: "5 Example Street, Examplton, EX1 2AB",
+              text: "5 Example Street, Examplton, EX1 2AB"
+            },
+            {
+              value: "6 Example Street, Examplton, EX1 2AB",
+              text: "6 Example Street, Examplton, EX1 2AB"
+            },
+            {
+              value: "7 Example Street, Examplton, EX1 2AB",
+              text: "7 Example Street, Examplton, EX1 2AB"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <p><a href="">Search again</a></p>
+
+        <p><a href="">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

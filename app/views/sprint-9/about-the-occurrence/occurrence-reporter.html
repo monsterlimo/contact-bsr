@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+{% set title = "Who reported the occurrence to you?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+          {{ govukInput({
+            label: {
+              text: 'Full name or organisation'
+            },
+            id: "reporter-name",
+            name: "reporter-name",
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: 'Email (optional)'
+            },
+            id: "reporter-email",
+            name: "reporter-email",
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: "Relationship to building"
+            },
+            hint: {
+              text: "For example, resident, contractor, visitor"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "reporter-relationship",
+            name: "reporter-relationship"
+          }) }}
+         
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

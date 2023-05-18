@@ -1,0 +1,24 @@
+{% extends "layouts/main.html" %}
+{% set title = "Mandatory occurrence report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="POST">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+        <p>If you are an accountable person (AP), principal accountable person (PAP), principal contractor or principal designer, you must make a mandatory occurrence report (MOR) for a building in the event of a safety occurrence which risks structural failure or spread of fire.</p>
+        <p>You commit a criminal offence if you do not make a MOR within 10 days of becoming aware of an occurrence.</p>
+        <p>If you are another accountable or responsible person for a building, and you consider a MOR should have been made but has not, use the back function and select “I want to make a complaint about a building”.</p>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

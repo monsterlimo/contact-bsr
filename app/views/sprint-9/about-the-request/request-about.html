@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+{% set title = "What do you want to contact the Building Safety Regulator about?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the request</span>
+
+        {% set other %}
+          {{ govukInput({
+            label: {
+              text: "Tell us what you would like to talk to the building safety regulator about",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            classes: "govuk-input--width-20",
+            id: "request-about-what-other",
+            name: "request-about-what-other"
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "request-about-what",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "building",
+              text: "a building"
+            },
+            {
+              value: "person",
+              text: "a person or organisation"
+            },
+            {
+              value: "bsr",
+              text: "building safety regulation or policy"
+            },
+            {
+              value: "other",
+              text: "something else",
+              conditional: {
+                html: other
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
