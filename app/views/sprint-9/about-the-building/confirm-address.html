@@ -65,7 +65,7 @@
               value: {
                 text: "20.02m"
               }
-            } if data['type-of-person'] == "public",
+            } if data['type-of-person'] == "professional",
             {
               key: {
                 text: "Number of residential units"
@@ -73,7 +73,7 @@
               value: {
                 text: "57"
               }
-            } if data['type-of-person'] == "public",
+            } if data['type-of-person'] == "professional",
             {
               key: {
                 text: "Principal accountable person"
@@ -87,7 +87,7 @@
 
         <p><a href="postcode-lookup">Search again</a></p>
         <p><a href="which-region">Enter address manually</a></p>
-        
+
         {{ govukButton({
           text: "Confirm"
         }) }}
