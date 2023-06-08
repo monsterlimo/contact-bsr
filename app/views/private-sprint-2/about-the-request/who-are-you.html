@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+{% set title = "Who are you?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the request</span>
+        {% set otherDutyHolder %}
+          {{ govukInput({
+            id: "other-duty-holder",
+            name: "other-duty-holder",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Your organisations role"
+            }
+          }) }}
+        {% endset -%}
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "type-of-person",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select 'resident' if you are a resident or acting on behalf of one"
+          },
+          items: [
+            {
+              value: "resident",
+              text: "a resident"
+            },
+             {
+              value: "public",
+              text: "a member of the public"
+            },
+            {
+              value: "professional",
+              text: "a building professional, for example an accountable person"
+            },
+            {
+              value: "other",
+              text: "Other",
+              conditional: {
+                html: otherDutyHolder
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <!--<p>Data<br>Request about <strong>{{ data['request-about-what'] }} - {{ data['enquiry-about']  }}</strong></p>-->
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

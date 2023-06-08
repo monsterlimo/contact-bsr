@@ -15,3 +15,5 @@ require('./routes/sprint-6-mor')(router)
 require('./routes/sprint-7')(router)
 require('./routes/sprint-8')(router)
 require('./routes/sprint-9')(router)
+
+require('./routes/private-sprint-2')(router)

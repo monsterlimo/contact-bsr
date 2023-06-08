@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+<div class="email-heading"><p class="govuk-heading-m">Email template</p></div>
+{% endblock %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+body.govuk-template__body {
+  background-color: lightgrey;
+}
+
+.email-heading {
+  height: 70px;
+  background-color: black;
+  width: 1040px;
+  margin: auto;
+}
+
+.email-heading p {
+  color: white;
+  padding: 20px 40px 20px 40px;
+  
+}
+
+.govuk-width-container {
+  //max-width: 800px;
+  background-color: white;
+  padding: 0 40px 40px 40px;
+}
+  
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      
+
+      <h1 class="govuk-heading-l">Complaint received</h1>
+
+      <p>We have received your complaint about Whitehall 2, LS1.</p>
+
+      <h2 class="govuk-heading-m">Reference number</h2> 
+
+      <p><strong>HDJ2123F</strong></p>
+
+      <h2 class="govuk-heading-m"> What you told us</h2>
+
+      <p>There is a problem with the fire doors and they've not been fixed. I've complained to the building manager a few months ago and nothing has happened.</p>
+
+      <h2 class="govuk-heading-m"> Your supporting information</h2>
+
+      <p>You have sent us 4 files</p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p>You have chosen not to provide us with your contact details. We cannot keep you updated with any actions we may take.</p>
+
+      <p>If you want us to update you, you must provide us with a way to contact you, for example your phone number or email address. You can do this by email or phone quoting your reference number.</p>
+
+      <p>Email or phone BSR on 0300 790 6787 with your reference number.</p>
+      <p>BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -15,6 +15,18 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
 
+    {% set emailsV7 %}
+      <p><a href="private-sprint-2/emails/complaint-email">Complaint - Confirmation - contact provided</a></p>
+      <p><a href="private-sprint-2/emails/complaint-email-no-contact">Complaint - Confirmation - no contact details</a></p>
+      <p><a href="private-sprint-2/emails/complaint-investigation-email">Complaint - Investigation</a></p>
+      <p><a href="private-sprint-2/emails/complaint-no-investigation-no-evidence-email">Complaint - No Investivation</a></p>
+      <p><a href="private-sprint-2/emails/complaint-enforcement-action-email">Complaint - Enforcement action</a></p>
+      <p><a href="private-sprint-2/emails/complaint-no-enforcement-action-email">Complaint - No enforcement action</a></p>
+      <p><a href="private-sprint-2/emails/question-email">Question - Confirmation</a></p>
+      <p><a href="private-sprint-2/emails/more-info-email">Addition supporting information</a></p>
+      <p><a href="private-sprint-2/emails/complaint-case-closed-email">Complaint - Case closed</a></p>
+    {% endset %}
+    
     {% set emailsV6 %}
       <p><a href="sprint-9/emails/complaint-email">Complaint - Confirmation - contact provided</a></p>
       <p><a href="sprint-9/emails/complaint-email-no-contact">Complaint - Confirmation - no contact details</a></p>
@@ -25,7 +37,6 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       <p><a href="sprint-9/emails/question-email">Question - Confirmation</a></p>
       <p><a href="sprint-9/emails/more-info-email">Addition supporting information</a></p>
       <p><a href="sprint-9/emails/complaint-case-closed-email">Complaint - Case closed</a></p>
-
     {% endset %}
 
     {% set emailsV5 %}
@@ -35,18 +46,24 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       <p><a href="sprint-8/emails/question-email">Question - Confirmation email</a></p>
     {% endset %}
 
-    <h2 class="govuk-heading-m">Current</h2>
+    <h2 class="govuk-heading-m">Private Beta Current</h2>
+    <p><a href="private-sprint-2/start">Sprint 2 (v7) - Advice and complaints</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emailsV7
+    }) }}
+    
+
+    <h2 class="govuk-heading-m">Private Beta</h2>
+    <p>to do</p>
+
+
+    <h2 class="govuk-heading-m">Alpha</h2>
     <p><a href="sprint-9/start-advice">Sprint 9 (v6) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",
       html: emailsV6
     }) }}
-    
-<!--
-    <h2 class="govuk-heading-m">Private Beta</h2>
-    <p>to do</p>
--->
-    <h2 class="govuk-heading-m">Alpha</h2>
     <p><a href="sprint-8/start-advice">Sprint 8 (v5) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",

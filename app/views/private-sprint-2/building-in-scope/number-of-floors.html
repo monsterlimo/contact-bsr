@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+{% set title = "How big is the building?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "building-size",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Do not count basement levels, the roof, or floors that contain only machinery such as lift equipment"
+          },
+          items: [
+            {
+              value: "7 floors or more, or 18m or more high",
+              text: "7 floors or more, or 18m or more high"
+            },
+            {
+              value: "fewer than 7 floors, or less than 18m high",
+              text: "fewer than 7 floors, or less than 18m high"
+            },
+            {
+              value: "I don't know",
+              text: "I don't know"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

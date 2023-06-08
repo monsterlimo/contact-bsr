@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your name" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+        {% if data['enquiry-about'] == "complaint" %}
+
+        <p>If you don't want to give us your name and contact details, you can ask a question or make a complaint via <a href="">third party</a></p>
+
+{#
+        {% set detailsContent %}
+          <p>You can choose to:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>make an anonymous complaint. Neither BSR or whoever is accountable for safety in the building will know your name. But we won't be able to tell you what action we may take about your complaint</li>
+            <li>tell only BSR who you are. We won't share your name or contact details with whoever is accountable for building safety. But we will update you with any action we may take</li>
+            <li>allow us to share your name and contact details with whoever is accountable for building safety.</li>
+          </ul>
+        {% endset %}
+
+        {{ govukDetails({
+          summaryText: "Choose what information you share about yourself",
+          html: detailsContent
+        }) }}
+#}
+        {% endif %}
+          {{ govukInput({
+            label: {
+              text: 'First name'
+            },
+            id: "contact-first-name",
+            name: "contact-first-name",
+            value: data['contact-first-name'],
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: 'Last name'
+            },
+            id: "contact-last-name",
+            name: "contact-last-name",
+            value: data['contact-last-name'],
+            classes: "govuk-input--width-20"
+          }) }}
+         
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
