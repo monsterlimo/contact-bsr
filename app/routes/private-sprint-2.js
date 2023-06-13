@@ -28,6 +28,10 @@ module.exports = router => {
     })
     
     router.post('/private-sprint-2/about-the-building/postcode-lookup', (req, res) => {
+        res.redirect('/private-sprint-2/about-the-building/choose-address')
+    })
+
+    router.post('/private-sprint-2/about-the-building/choose-address', (req, res) => {
         res.redirect('/private-sprint-2/about-the-building/confirm-address')
     })
 
