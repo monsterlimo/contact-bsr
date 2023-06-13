@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Select the address of the building" %}
+{% set title = "We did not find the address of the building" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -34,10 +34,6 @@
         <p><a href="postcode-lookup">Search again</a></p>
 
         <p><a href="enter-the-building-address">Enter address manually</a></p>
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
 
       </form>
 

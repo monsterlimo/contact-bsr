@@ -1,0 +1,29 @@
+{% extends "layouts/main.html" %}
+{% set title = "The building is not regulated by the Building Safety Regulator" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+        <p>The Building Safety Regulator only covers buildings which are:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>18 metres high or have 7 or more stories
+          <li>2 or more residential units
+        </ul>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
