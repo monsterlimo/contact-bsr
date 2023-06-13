@@ -33,10 +33,9 @@
           <p>To make an anonymous complaint, click on the Continue button without entering your name.</p>
         {% endif %}
         #}
-        <mark>only 1 is required</mark>
           {{ govukInput({
             label: {
-              text: 'Contact number'
+              text: 'Contact number (optional)' if data['enquiry-about'] == "complaint" else 'Contact number'
             },
             id: "contact-number",
             name: "contact-number",
@@ -44,7 +43,7 @@
           }) }}
           {{ govukInput({
             label: {
-              text: 'Contact email'
+              text: 'Contact email (optional)' if data['enquiry-about'] == "complaint" else 'Contact email'
             },
             id: "contact-email",
             name: "contact-email",
