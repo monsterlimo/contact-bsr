@@ -13,59 +13,122 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">About the occurrence</span>
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+
       <form action="" method="post">
-        <span class="govuk-caption-l">About the complaint</span>
 
-        
-      {%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
-      {%- from "govuk/components/button/macro.njk" import govukButton -%}
-      {%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
+    <div id="file-upload-1-hint" class="govuk-hint">
+      You can upload supporting information, for example a scanned document or photo. The selected file must be smaller than 100MB.
+    </div>
 
-      <h1 class="govuk-heading-l">{{ title }}</h1>
+    <p id="upload-update" class="govuk-body govuk-!-display-none" aria-live="assertive" aria-relevant="all">1 of 2 files uploaded</p>
 
+    <!--
+    <button id="upload-button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Upload another receipt
+    </button>
+    -->
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="upload-button">
+        Upload supporting information
+      </label>
+      <input class="govuk-file-upload" id="upload-button" name="upload-button" type="file" multiple="multiple">
+    </div>
 
-      {% set uploadHtml %}
-        {{ govukFileUpload({
-          id: "documents",
-          name: "documents",
-          classes: 'moj-multi-file-upload__input',
-          label: {
-            text: "Upload a file",
-            classes: 'govuk-label--m'
-          },
-          attributes: { multiple: '' },
-          errorMessage: errorMessage
+    <p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+
+    <dl id="file-row-container" class="govuk-summary-list govuk-summary-list--long-key">
+      <!--
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          receipt2.jpg
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--yellow">uploading</strong>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Remove<span class="govuk-visually-hidden"> receipt1.jpg</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          <a class="govuk-link" href="#">receipt1.jpg</a>
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--green">uploaded</strong>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Remove<span class="govuk-visually-hidden"> receipt1.jpg</span>
+          </a>
+        </dd>
+      </div>-->
+    </dl>
+
+      
+    
+        {{ govukButton({
+          text: "Continue"
         }) }}
-        {{govukButton({
-          text: 'Upload file',
-          classes: 'govuk-button--secondary moj-multi-file-upload__button'
-        })}}
-      {% endset %}
-      {{ mojMultiFileUpload({
-        uploadedFiles: {
-          heading: { text: 'Files added' },
-          items: uploadedFiles
-        },
-        uploadHtml: uploadHtml
-      }) }}
-      {{govukButton({
-        text: 'Continue'
-      })}}
 
-    </form>
+      </form>
   </div>
 </div>
+
+
+
 
 {% endblock %}
 
 {% block pageScripts %}
+
 <script>
-if(typeof MOJFrontend.MultiFileUpload !== 'undefined') {
-  new MOJFrontend.MultiFileUpload({
-    container: $('.moj-multi-file-upload'),
-    uploadUrl: '/ajax-upload-url',
-    deleteUrl: '/ajax-delete-url'
-  });
+document.getElementById("upload-button").addEventListener("click", fileUpload);
+document.getElementById("upload-button").addEventListener("change", fileSelected);
+
+const fileRows = document.getElementById("file-row-container");
+const uploadUpdate = document.getElementById("upload-update");
+
+function fileUpload() {
+  //console.log("upload clicked")
+}
+
+function fileSelected(e) {
+
+  for (i = 0; i < e.target.files.length; i++) {
+    
+    const markup = `
+      <dt class="govuk-summary-list__key">
+        <a class="govuk-link" href="#">${e.target.files[i].name}</a>
+         <input type="hidden" id="filesUploaded" name="filesUploaded" value="${e.target.files[i].name}">
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <strong class="govuk-tag govuk-tag--yellow">uploading</strong>
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="#">
+          Remove<span class="govuk-visually-hidden"> ${e.target.files[i].name}</span>
+        </a>
+      </dd>
+    `;
+
+    let row = document.createElement('div');
+    row.classList.add("govuk-summary-list__row")
+    row.innerHTML = markup
+    fileRows.append(row)
+
+    filesUploading = document.getElementsByClassName('govuk-tag--yellow').length
+    filesUploaded =document.getElementsByClassName('govuk-tag--green').length
+
+    uploadUpdate.textContent = `${filesUploaded} of ${filesUploading} files uploaded`;
+    uploadUpdate.classList.remove("govuk-!-display-none");
+
+  }
+
 }
 </script>
+
 {% endblock %}

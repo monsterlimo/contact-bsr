@@ -24,39 +24,41 @@
           }
           
         }) %}
-        {% if data['enquiry-about'] == "complaint" %}
+        {% if data['enquiry-about'] == "make a complaint" %}
           <p>We need your contact details so we can tell you what we are doing about your complaint.</p>
         {% endif %}
         <p>Without your contact details we cannot update you.</p>
+        <p>Alternatively, you can ask a third party you trust to complete this service on your behalf.</p>
         {#
-        {% if data['enquiry-about'] == "complaint" %}
+        {% if data['enquiry-about'] == "make a complaint" %}
           <p>To make an anonymous complaint, click on the Continue button without entering your name.</p>
         {% endif %}
         #}
           {{ govukInput({
             label: {
-              text: 'Contact number (optional)' if data['enquiry-about'] == "complaint" else 'Contact number'
-            },
-            id: "contact-number",
-            name: "contact-number",
-            classes: "govuk-input--width-20"
-          }) }}
-          {{ govukInput({
-            label: {
-              text: 'Contact email (optional)' if data['enquiry-about'] == "complaint" else 'Contact email'
+              text: 'Contact email' if data['enquiry-about'] == "make a complaint" else 'Contact email'
             },
             id: "contact-email",
             name: "contact-email",
             classes: "govuk-input--width-20"
           }) }}
+          {{ govukInput({
+            label: {
+              text: 'Contact number (optional)' if data['enquiry-about'] == "make a complaint" else 'Contact number'
+            },
+            id: "contact-number",
+            name: "contact-number",
+            classes: "govuk-input--width-20"
+          }) }}
+          
         {% endcall %}
 
-        {% if data['enquiry-about'] == "complaint" %}
+        {% if data['enquiry-about-what'] == "building" %}
           {{ govukRadios({
           name: "share-contact-with-ap",
           fieldset: {
             legend: {
-              text: "Can we share your details with the person or organisation accountable for safety in your building?",
+              text: "Can we share your contact details with the person or organisation accountable for safety in your building?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--m"
             }

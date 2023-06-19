@@ -1,6 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set type = "complaint" if data['enquiry-about'] == "complaint" else "MOR" %}
-{% set title = "Do you have any more information to support your " + type + "?" %}
+{% set title = "What do you want to " + data['enquiry-about'] + " to the BSR about?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,10 +15,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <span class="govuk-caption-l">About the request</span>
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "more-evidence",
+          name: "request-about-what",
           fieldset: {
             legend: {
               text: title,
@@ -29,15 +28,20 @@
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "building",
+              text: "I want to " + data['enquiry-about'] + " about a building or a person who manages the building safety "
             },
             {
-              value: "no",
-              text: "No"
+              value: "person",
+              text: "I want to " + data['enquiry-about'] + " about a building inspector "
+            },
+            {
+              value: "bsr",
+              text: "I want to " + data['enquiry-about'] + " about BSR"
             }
           ]
         }) }}
+
 
         {{ govukButton({
           text: "Continue"

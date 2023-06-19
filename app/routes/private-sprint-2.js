@@ -3,14 +3,23 @@ const _ = require('lodash')
 module.exports = router => {
     router.post('/private-sprint-2/start', (req, res) => {
         req.session.data = []
-        res.redirect('/private-sprint-2/about-the-request/request-about')
-    })
-
-    router.post('/private-sprint-2/about-the-request/request-about', (req, res) => {
         res.redirect('/private-sprint-2/about-the-request/complaint-or-advice')
     })
 
+    //router.post('/private-sprint-2/about-the-request/request-about', (req, res) => {
+    //    res.redirect('/private-sprint-2/about-the-request/complaint-or-advice')
+    //})
+
     router.post('/private-sprint-2/about-the-request/complaint-or-advice', (req, res) => {
+        if (req.session.data['enquiry-about'] == "ask a question") {
+            res.redirect('/private-sprint-2/about-the-request/who-are-you')
+            req.session.data['enquiry-about'] = "ask a question"
+        } else {
+            res.redirect('/private-sprint-2/about-the-request/complaint-or-advice-about')
+        }
+    })
+
+    router.post('/private-sprint-2/about-the-request/complaint-or-advice-about', (req, res) => {
         res.redirect('/private-sprint-2/about-the-request/who-are-you')
     })
 
@@ -60,7 +69,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/about-the-person/enter-your-contact-details', (req, res) => {
-       if (req.session.data['enquiry-about'] == "advice") {
+       if (req.session.data['enquiry-about'] == "ask a question") {
         // advice
         if (req.session.data['request-about-what'] == "person") {
             res.redirect('/private-sprint-2/about-the-request/enter-advice-required')
@@ -93,15 +102,31 @@ module.exports = router => {
                 // HRB
                 res.redirect('/private-sprint-2/about-the-complaint/have-you-contacted-the-ap')
             }
-        } else {
+        } else if (req.session.data['request-about-what'] == "person") {
             res.redirect('/private-sprint-2/about-the-complaint/complaint-about-who')
+        } else {
+            res.redirect('/private-sprint-2/about-the-complaint/complaint-details-bsr')
         }
+        
         
        }
     })
 
+    //router.post('/private-sprint-2/about-the-complaint/complaint-about-who', (req, res) => {
+    //    res.redirect('/private-sprint-2/about-the-complaint/have-you-contacted-the-ap')
+    //})
+
+    router.post('/private-sprint-2/about-the-complaint/complaint-details-bsr', (req, res) => {
+        res.redirect('/private-sprint-2/check-your-answers')
+    })
+
+
     router.post('/private-sprint-2/about-the-complaint/complaint-about-who', (req, res) => {
-        res.redirect('/private-sprint-2/about-the-complaint/have-you-contacted-the-ap')
+        res.redirect('/private-sprint-2/about-the-complaint/complaint-details-person')
+    })
+
+    router.post('/private-sprint-2/about-the-complaint/complaint-details-person', (req, res) => {
+        res.redirect('/private-sprint-2/check-your-answers')
     })
 
     router.post('/private-sprint-2/about-the-request/ask-a-question-about-who', (req, res) => {
@@ -118,7 +143,7 @@ module.exports = router => {
 
     // only appears for public
     router.post('/private-sprint-2/about-the-person/what-is-your-relationship-to-the-building', (req, res) => {
-        if (req.session.data['enquiry-about'] == "advice") {
+        if (req.session.data['enquiry-about'] == "ask a question") {
             if (req.session.data['building-region']) {
                 res.redirect('/private-sprint-2/building-in-scope/number-of-floors') 
             } else {
@@ -170,7 +195,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/building-in-scope/number-of-units', (req, res) => {
-        if (req.session.data['enquiry-about'] == "advice") {
+        if (req.session.data['enquiry-about'] == "ask a question") {
             res.redirect('/private-sprint-2/about-the-request/enter-advice-required')   
         } else {
             res.redirect('/private-sprint-2/about-the-complaint/complaint-details')   
@@ -178,7 +203,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/building-in-scope/prof-number-of-units', (req, res) => {
-        if (req.session.data['enquiry-about'] == "advice") {
+        if (req.session.data['enquiry-about'] == "ask a question") {
             res.redirect('/private-sprint-2/about-the-request/enter-advice-required')   
         } else {
             res.redirect('/private-sprint-2/about-the-complaint/complaint-details')   
@@ -196,7 +221,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/about-the-complaint/complaint-details', (req, res) => {
-        res.redirect('/private-sprint-2/supporting-information/do-you-have-any-supporting-info')
+        res.redirect('/private-sprint-2/supporting-information/upload-supporting-info')
     })
 
     router.post('/private-sprint-2/about-the-occurrence/occurrence-type', (req, res) => {
@@ -220,7 +245,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/about-the-occurrence/occurrence-details', (req, res) => {
-        res.redirect('/private-sprint-2/supporting-information/do-you-have-any-supporting-info')
+        res.redirect('/private-sprint-2/supporting-information/upload-supporting-info')
     })
 
     router.post('/private-sprint-2/supporting-information/do-you-have-any-supporting-info', (req, res) => {
@@ -240,7 +265,8 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/supporting-information/review-uploads', (req, res) => {
-        if (req.session.data['enquiry-about'] == "complaint") {
+        /*
+        if (req.session.data['enquiry-about'] == "make a complaint") {
             // no complaint goes to AP
             if (req.session.data['contacted-ap'] == "yes") {
                 res.redirect('/private-sprint-2/about-the-ap/enter-ap-details')
@@ -250,6 +276,8 @@ module.exports = router => {
         } else {
             res.redirect('/private-sprint-2/check-your-answers')
         }
+        */
+        res.redirect('/private-sprint-2/check-your-answers')
     })
 
     router.post('/private-sprint-2/about-occurrence/reporter-relationship', (req, res) => {

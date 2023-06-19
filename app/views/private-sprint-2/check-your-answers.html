@@ -23,23 +23,6 @@
         rows: [
           {
             key: {
-              text: "What do you want to contact the Building Safety Regulator about?"
-            },
-            value: {
-              text: (data['request-about-what'] | capitalize) or "Building"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-request/request-about",
-                  text: "Change",
-                  visuallyHiddenText: "what the request is about"
-                }
-              ]
-            }
-          },
-          {
-            key: {
               text: "How can the Building Safety Regulator help you?"
             },
             value: {
@@ -55,6 +38,23 @@
               ]
             }
           },
+          {
+            key: {
+              text: "What do you want to contact the Building Safety Regulator about?"
+            },
+            value: {
+              text: (data['request-about-what'] | capitalize) or "Building"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-request/request-about",
+                  text: "Change",
+                  visuallyHiddenText: "what the request is about"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "make a complaint",
           {
             key: {
               text: "Who are you?"
@@ -372,7 +372,7 @@
       }) }}
       {% endif %}
 
-      {% if data['enquiry-about'] == 'advice'  %}
+      {% if data['enquiry-about'] == 'ask a question'  %}
         <h2 class="govuk-heading-m">About the question</h2>
         {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',

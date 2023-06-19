@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is your complaint?" %}
+{% set title = "What is your complaint about a person?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -44,55 +44,20 @@
           }
         }) }}-->
 
-        {{ govukTextarea({
-          name: "occurrence-details-what",
-          id: "occurrence-details-what",
-          label: {
-            text: "What is the problem?",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          }
-        }) }}
+       
 
-        {{ govukDateInput({
-          id: "passport-issued",
-          namePrefix: "passport-issued",
-          fieldset: {
-            legend: {
-              text: "When did the problem appear?",
-              isPageHeading: false,
-              classes: "govuk-label--s"
-            }
-          },
-          hint: {
-            text: "For example, 23 09 2023"
-          }
-        }) }}
-
+       
         {{ govukTextarea({
           name: "occurrence-details-why",
           id: "occurrence-details-why",
           label: {
-            text: "Who have you already contacted about the problem?",
+            text: title,
             classes: "govuk-label--s",
-            isPageHeading: false
+            isPageHeading: true
           }
         }) }}
 
-        {{ govukDateInput({
-          id: "passport-issued",
-          namePrefix: "passport-issued",
-          fieldset: {
-            legend: {
-              text: "When did you first contact them?",
-              isPageHeading: false,
-              classes: "govuk-label--s"
-            }
-          },
-          hint: {
-            text: "For example, 23 09 2023"
-          }
-        }) }}
+      
 
 
        

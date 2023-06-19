@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is your question about a building?" if data['enquiry-about'] == "advice" else "Is your complaint about a building?" %}
+{% set title = "Is your question about a building?" if data['enquiry-about'] == "ask a question" else "Is your complaint about a building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -29,11 +29,11 @@
           items: [
             {
               value: "yes",
-              text: "Yes" if data['enquiry-about'] == "advice" else "Yes it relates to a specific building"
+              text: "Yes" if data['enquiry-about'] == "ask a question" else "Yes it relates to a specific building"
             },
             {
               value: "no",
-              text: "No, I need to ask a question which is not related to a specific building" if data['enquiry-about'] == "advice" else "No, it does not relate to a specific building"
+              text: "No, I need to ask a question which is not related to a specific building" if data['enquiry-about'] == "ask a question" else "No, it does not relate to a specific building"
             }
           ]
         }) }}
