@@ -19,9 +19,9 @@
         {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
         {{ govukCharacterCount({
-          name: "enquiry-description",
-          id: "enquiry-description",
-          value: data['enquiry-description'],
+          name: "question-details",
+          id: "question-details",
+          value: data['question-details'],
           maxlength: 1500,
           label: {
             text: title,
