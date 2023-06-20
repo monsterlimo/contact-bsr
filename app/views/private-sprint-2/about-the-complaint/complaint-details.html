@@ -17,36 +17,12 @@
       <form action="" method="post">
         <span class="govuk-caption-l">About the complaint</span>
         <h1 class="govuk-heading-l">{{ title }}</h1>
-        {% set entityType = "an accountable person" if data['request-about-what'] == "building" else "a person or organisation" %}
 
-        {% set hint %}
-        <p>Tell us what happened, when, who was involved and if any action has been taken to resolve the problem.</p>
-        <p>If you have already complained to {{entityType}}, you can tell us who you complained to and when later in this service.</p>
-        {% endset %}
-        
-        {% if data['type-of-person'] == "public" %}
-          {{ govukDetails({
-            summaryText: "What can I complain to BSR about?",
-            text: "The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact {{entityType}}, such as the building’s landlord or management company."
-          }) }}
-        {% endif %}
-        
-        <!--{{ govukTextarea({
-          name: "complaint-details",
-          id: "complaint-details",
-          hint: {
-            html: hint
-          },
-          label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
-          }
-        }) }}-->
 
-        {{ govukTextarea({
-          name: "occurrence-details-what",
-          id: "occurrence-details-what",
+        {{ govukCharacterCount({
+          name: "with-hint",
+          id: "with-hint",
+          maxlength: 1500,
           label: {
             text: "What is the problem?",
             classes: "govuk-label--s",
@@ -69,9 +45,11 @@
           }
         }) }}
 
-        {{ govukTextarea({
-          name: "occurrence-details-why",
-          id: "occurrence-details-why",
+        {{ govukCharacterCount({
+          name: "with-hint",
+          id: "with-hint",
+          maxlength: 500,
+          rows: 3,
           label: {
             text: "Who have you already contacted about the problem?",
             classes: "govuk-label--s",

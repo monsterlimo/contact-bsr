@@ -107,17 +107,11 @@ module.exports = router => {
         } else {
             res.redirect('/private-sprint-2/about-the-complaint/complaint-details-bsr')
         }
-        
-        
        }
     })
 
-    //router.post('/private-sprint-2/about-the-complaint/complaint-about-who', (req, res) => {
-    //    res.redirect('/private-sprint-2/about-the-complaint/have-you-contacted-the-ap')
-    //})
-
     router.post('/private-sprint-2/about-the-complaint/complaint-details-bsr', (req, res) => {
-        res.redirect('/private-sprint-2/check-your-answers')
+        res.redirect('/private-sprint-2/supporting-information/upload-supporting-info')
     })
 
 
@@ -126,7 +120,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/about-the-complaint/complaint-details-person', (req, res) => {
-        res.redirect('/private-sprint-2/check-your-answers')
+        res.redirect('/private-sprint-2/supporting-information/upload-supporting-info')
     })
 
     router.post('/private-sprint-2/about-the-request/ask-a-question-about-who', (req, res) => {
