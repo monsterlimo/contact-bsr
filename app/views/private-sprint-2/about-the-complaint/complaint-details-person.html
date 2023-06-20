@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is your complaint about a person?" %}
+{% set title = "What is your complaint?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,8 +18,8 @@
         <span class="govuk-caption-l">About the complaint</span>
         
         {{ govukCharacterCount({
-          name: "with-hint",
-          id: "with-hint",
+          name: "complaint-details",
+          id: "complaint-details",
           maxlength: 1500,
           label: {
             text: title,

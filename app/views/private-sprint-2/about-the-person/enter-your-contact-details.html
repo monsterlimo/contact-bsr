@@ -26,14 +26,14 @@
         }) %}
         {% if data['enquiry-about'] == "make a complaint" %}
           <p>We need your contact details so we can tell you what we are doing about your complaint.</p>
-        {% endif %}
+        {% else %}
         <p>Without your contact details we cannot update you.</p>
-        <p>Alternatively, you can ask a third party you trust to complete this service on your behalf.</p>
-        {#
-        {% if data['enquiry-about'] == "make a complaint" %}
-          <p>To make an anonymous complaint, click on the Continue button without entering your name.</p>
         {% endif %}
-        #}
+
+        {% if data['enquiry-about'] == "make a complaint" %}
+        <p>If you prefer not to provide us with your name and contact details, someone else you trust can make a complaint on your behalf.</p>
+        {% endif %}
+
           {{ govukInput({
             label: {
               text: 'Contact email' if data['enquiry-about'] == "make a complaint" else 'Contact email'
@@ -44,7 +44,7 @@
           }) }}
           {{ govukInput({
             label: {
-              text: 'Contact number (optional)' if data['enquiry-about'] == "make a complaint" else 'Contact number'
+              text: 'Contact number' if data['enquiry-about'] == "make a complaint" else 'Contact number'
             },
             id: "contact-number",
             name: "contact-number",
@@ -53,7 +53,7 @@
           
         {% endcall %}
 
-        {% if data['enquiry-about-what'] == "building" %}
+        {% if data['request-about-what'] == "building" %}
           {{ govukRadios({
           name: "share-contact-with-ap",
           fieldset: {

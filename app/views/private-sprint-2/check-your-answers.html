@@ -261,11 +261,28 @@
         ]
       }) }}
 
-      {% if data['enquiry-about'] == 'complaint'  %}
+      {% if data['enquiry-about'] == 'make a complaint'  %}
       <h2 class="govuk-heading-m">About the complaint</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
+          {
+            key: {
+              text: "Type of complaint"
+            },
+            value: {
+              text: data['request-about-what'] | capitalize or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/have-you-contacted-the-ap",
+                  text: "Change",
+                  visuallyHiddenText: "share contact details with the accountable person"
+                }
+              ]
+            }
+          },
           {
             key: {
               text: "Share contact details with the accountable person"
@@ -282,7 +299,7 @@
                 }
               ]
             }
-          },
+          } if data['request-about-what'] == "building",
           {
             key: {
               text: "Have you complained about this issue to an accountable person?"
@@ -299,10 +316,78 @@
                 }
               ]
             }
-          },
+          } if data['request-about-what'] == "building",
           {
             key: {
-              text: "Who did you contact?"
+              text: "What is the problem?"
+            },
+            value: {
+              text: data['complaint-problem-details'] or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "complained to the accountable person"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "When did the problem appear?"
+            },
+            value: {
+              text: data['complaint-problem-appear-day'] + "-" + data['complaint-problem-appear-month'] + "-" + data['complaint-problem-appear-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "complained to the accountable person"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "Who have you already contacted about the problem?"
+            },
+            value: {
+              text: data['complaint-problem-who'] or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "complained to the accountable person"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "When did you first contact them?"
+            },
+            value: {
+              text: data['complaint-problem-when-day'] + "-" + data['complaint-problem-when-month'] + "-" + data['complaint-problem-when-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "complained to the accountable person"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "Person or organisation the complaint is about"
             },
             value: {
               text: data['complaint-about-who'] or "Landlord" 
@@ -316,13 +401,13 @@
                 }
               ]
             }
-          } if data['complaint-about-who'],
+          } if data['request-about-what'] == "person",
           {
             key: {
-              text: "When did you contact them?"
+              text: "Details of the complaint"
             },
             value: {
-              text: data['ap-contacted-date-day'] + "-" + data['ap-contacted-date-month'] + "-" + data['ap-contacted-date-year'] 
+              text: data['complaint-details'] or "Landlord" 
             },
             actions: {
               items: [
@@ -333,24 +418,7 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "What is your complaint?"
-            },
-            value: {
-              text: data['complaint-details'] or "About the complaint" 
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-complaint/complaint-details",
-                  text: "Change",
-                  visuallyHiddenText: "complaint details"
-                }
-              ]
-            }
-          } if data['contacted-ap'] == 'yes',
+          } if data['request-about-what'] != "building",
           {
             key: {
               text: "Supporting information"

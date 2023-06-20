@@ -25,24 +25,8 @@
         }) %}
         {% if data['enquiry-about'] == "make a complaint" %}
 
-        <p>You don't have to give us your name or contact details. But if you do not, we will not be able to respond to you.</p>
-        <p>Alternatively, you can ask a third party you trust to complete this service on your behalf.</p>
+        <p>If you prefer not to provide us with your name and contact details, someone else you trust can make a complaint on your behalf.</p>
 
-{#
-        {% set detailsContent %}
-          <p>You can choose to:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>make an anonymous complaint. Neither BSR or whoever is accountable for safety in the building will know your name. But we won't be able to tell you what action we may take about your complaint</li>
-            <li>tell only BSR who you are. We won't share your name or contact details with whoever is accountable for building safety. But we will update you with any action we may take</li>
-            <li>allow us to share your name and contact details with whoever is accountable for building safety.</li>
-          </ul>
-        {% endset %}
-
-        {{ govukDetails({
-          summaryText: "Choose what information you share about yourself",
-          html: detailsContent
-        }) }}
-#}
         {% endif %}
           {{ govukInput({
             label: {

@@ -1,9 +1,7 @@
 {% extends "layouts/main.html" %}
 
-{% if data['enquiry-about'] == "mor" %}
-  {% set type = "occurrence report"  %}
-  {% set fallbackDesc = "I want to make a mandatory occurrence report" %}  
-{% elif data['enquiry-about'] == "ask a question" %}
+ 
+{% if data['enquiry-about'] == "ask a question" %}
   {% set type = "request for advice" %}
   {% set fallbackDesc = "I want advice about a high-rise residential building" %}  
 {% else %}
@@ -25,27 +23,28 @@
     <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-panel govuk-panel--confirmation">
-        <h1 class="govuk-panel__title">{{title}}</h1>
-        <div>We've received your {{ type }} about [building address]</div>
+        {% if data['enquiry-about'] == "make a complaint" %}
+          <h1 class="govuk-panel__title">Complaint received</h1>
+          {% if data['request-about-what'] == "building" %}
+            <div>We've received your complaint a building</div>
+          {% elif data['request-about-what'] == "person" %}
+            <div>We've received your complaint about a person or organisation</div>
+          {% else %}
+            <div>We've received your complaint about the Building Safety Regulator</div>
+          {% endif %}
+          
+        {% else %}
+          <h1 class="govuk-panel__title">We have received your question</h1>
+        {% endif %}
         <div class="govuk-panel__body">
           Reference number<br><strong><span aria-label="H, D, J, 2, 1, 2, 3, F">HDJ2123F</span></strong>
         </div>
       </div>
 
-      {% if data['contact-number'] == null and data['contact-email'] == null and data['contact-first-name'] == null %}
-      <h2 class="govuk-heading-m">What happens next</h2>
-      <p>You have chosen not ro provide us with your contact details. We cannot keep you updated with any actions we may take.</p>
-      <p>If you want us to update you, you must provide us with a way to contact you, for example your phone number or email address. You can do this by email or phone quoting your reference number.</p>
-      {% else %}
       <p>We have sent you a confirmation email that includes your reference number.</p>
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "ask a question" %} if we have to consult building safety experts {% endif %}.</p>
-      {% endif %}
+      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "ask a question" %} if we have to consult building safety experts {% endif %}.</p>    
 
-      
-
-
-      
       {% if data['enquiry-about'] == "make a complaint" %}
         <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>
       {% endif %}
