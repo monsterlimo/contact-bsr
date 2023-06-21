@@ -43,7 +43,12 @@
 
       <p>We have sent you a confirmation email that includes your reference number.</p>
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "ask a question" %} if we have to consult building safety experts {% endif %}.</p>    
+      {% if data['enquiry-about'] == "make a complaint" %}
+      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. 
+      {% else %}
+      <p>Once we have evaluated your question we will contact you with an answer.
+      {% endif %}
+      This may take up to 21 working days{% if data["enquiry-about"] == "ask a question" %} if we have to consult building safety experts {% endif %}.</p>
 
       {% if data['enquiry-about'] == "make a complaint" %}
         <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>

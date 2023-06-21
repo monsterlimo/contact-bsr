@@ -29,10 +29,9 @@
         {% else %}
         <p>Without your contact details we cannot update you.</p>
         {% endif %}
-
-        {% if data['enquiry-about'] == "make a complaint" %}
+      
         <p>If you prefer not to provide us with your name and contact details, someone else you trust can make a complaint on your behalf.</p>
-        {% endif %}
+
 
           {{ govukInput({
             label: {
