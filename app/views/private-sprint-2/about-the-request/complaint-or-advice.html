@@ -16,10 +16,9 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the request</span>
-        {% set hintText %}
+        {#{% set hintText %}
           <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
-        {% endset %}
-
+        {% endset %}#}
         {{ govukRadios({
           name: "enquiry-about",
           fieldset: {
@@ -28,9 +27,6 @@
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          hint: {
-            html: hintText
           },
           items: [
             {
