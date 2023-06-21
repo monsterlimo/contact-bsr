@@ -255,6 +255,18 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-2/supporting-information/upload-supporting-info', (req, res) => {
+        console.log(req.session.data['filesUploaded'])
+        console.log("before: " + typeof(req.session.data['filesUploaded']))
+
+        if (typeof(req.session.data['filesUploaded']) == "string") {
+            // convert string to object
+            var myArray = [];
+            myArray.push(req.session.data['filesUploaded'])
+            req.session.data['filesUploaded'] = myArray
+
+            console.log("after: " + typeof(req.session.data['filesUploaded']))
+        }
+    
         res.redirect('/private-sprint-2/supporting-information/review-uploads')
     })
 
