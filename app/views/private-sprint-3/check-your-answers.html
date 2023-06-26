@@ -33,7 +33,7 @@
                 {
                   href: "about-the-request/complaint-or-advice",
                   text: "Change",
-                  visuallyHiddenText: "what you need help with"
+                  visuallyHiddenText: "How can the Building Safety Regulator help you?"
                 }
               ]
             }
@@ -48,13 +48,13 @@
             actions: {
               items: [
                 {
-                  href: "about-the-request/request-about",
+                  href: "about-the-request/complaint-or-advice-about",
                   text: "Change",
-                  visuallyHiddenText: "what the request is about"
+                  visuallyHiddenText: "What do you want to contact the Building Safety Regulator about?"
                 }
               ]
             }
-          } if data['request-about-what'] == "make a complaint",
+          } if data['enquiry-about'] == "make a complaint",
           {
             key: {
               text: "Who are you?"
@@ -67,7 +67,7 @@
                 {
                   href: "about-the-request/who-are-you",
                   text: "Change",
-                  visuallyHiddenText: "who are you"
+                  visuallyHiddenText: "Who are you?"
                 }
               ]
             }
@@ -268,23 +268,6 @@
         rows: [
           {
             key: {
-              text: "Type of complaint"
-            },
-            value: {
-              text: data['request-about-what'] | capitalize or "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-complaint/have-you-contacted-the-ap",
-                  text: "Change",
-                  visuallyHiddenText: "share contact details with the accountable person"
-                }
-              ]
-            }
-          },
-          {
-            key: {
               text: "Share contact details with the accountable person"
             },
             value: {
@@ -293,7 +276,7 @@
             actions: {
               items: [
                 {
-                  href: "about-the-complaint/have-you-contacted-the-ap",
+                  href: "about-the-person/enter-your-contact-details",
                   text: "Change",
                   visuallyHiddenText: "share contact details with the accountable person"
                 }
@@ -310,7 +293,7 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-complaint/have-you-contacted-the-ap",
                   text: "Change",
                   visuallyHiddenText: "complained to the accountable person"
                 }
@@ -327,9 +310,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-complaint/complaint-details",
                   text: "Change",
-                  visuallyHiddenText: "complained to the accountable person"
+                  visuallyHiddenText: "complaint details"
                 }
               ]
             }
@@ -344,9 +327,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-complaint/complaint-details",
                   text: "Change",
-                  visuallyHiddenText: "complained to the accountable person"
+                  visuallyHiddenText: "complaint details"
                 }
               ]
             }
@@ -361,9 +344,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-complaint/complaint-details",
                   text: "Change",
-                  visuallyHiddenText: "complained to the accountable person"
+                  visuallyHiddenText: "complaint details"
                 }
               ]
             }
@@ -378,9 +361,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-complaint/complaint-details",
                   text: "Change",
-                  visuallyHiddenText: "complained to the accountable person"
+                  visuallyHiddenText: "complaint details"
                 }
               ]
             }
@@ -455,7 +438,7 @@
             actions: {
               items: [
                 {
-                  href: "about-the-request/ask-a-question-about-who",
+                  href: "about-the-request/enter-advice-required",
                   text: "Change",
                   visuallyHiddenText: "question about"
                 }
