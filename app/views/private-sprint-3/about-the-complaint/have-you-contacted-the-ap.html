@@ -17,25 +17,10 @@
       <form action="" method="post">
         <span class="govuk-caption-l">About the complaint</span>
 
-        {% set notContactedAP %}
-          {{ govukInput({
-            label: {
-              text: "Tell us why you didn't contact them",
-              classes: "govuk-label--s"
-            },
-            id: "width-20",
-            name: "width-20"
-          }) }}
-        {% endset %}
-
-        {% set hintLine = "The Building Safety Regulator will review your complaint even if you have not contacted an accountable person." if data['request-about-what'] == "building" else "The Building Safety Regulator will review your complaint even if you have not contacted the person or organisation before." %}
-
         {% set hint %}
           <p>For example, the landlord or management company.</p>
-          <p>{{ hintLine}}</p>
         {% endset %}
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
           name: "contacted-ap",
           fieldset: {
@@ -55,10 +40,7 @@
             },
             {
               value: "no",
-              text: "No",
-              conditional: {
-                html: notContactedAP
-              }
+              text: "No"
             }
           ]
         }) }}

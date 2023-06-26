@@ -27,7 +27,7 @@
         {% if data['enquiry-about'] == "make a complaint" %}
           <p>We need your contact details so we can tell you what we are doing about your complaint.</p>
         {% else %}
-        <p>Without your contact details we cannot update you.</p>
+        <p>Without your contact details we cannot respond to you.</p>
         {% endif %}
       
         <p>If you are acting on behalf of someone else, enter your details so we can respond to you.</p>
@@ -41,6 +41,9 @@
             name: "contact-email",
             classes: "govuk-input--width-20"
           }) }}
+
+          <p>And or</p>
+
           {{ govukInput({
             label: {
               text: 'Contact number' if data['enquiry-about'] == "make a complaint" else 'Contact number'

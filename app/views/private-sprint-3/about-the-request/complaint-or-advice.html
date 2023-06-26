@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How can the Building Safety Regulator help you?" %}
+{% set title = "How can we help you?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,9 +16,7 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the request</span>
-        {#{% set hintText %}
-          <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
-        {% endset %}#}
+
         {{ govukRadios({
           name: "enquiry-about",
           fieldset: {
@@ -35,19 +33,14 @@
             },
             {
               value: "make a complaint",
-              text: "I want to make a complaint"
+              text: "I want to complain"
             }
           ]
         }) }}
 
-        <!--<p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company.</p>
-        <p>You should use this service only to complain about risks involving structural failure or spread of fire, and only if the accountable person you reported them to has not dealt with them.</p>-->
-
         {{ govukButton({
           text: "Continue"
         }) }}
-
-        <!--<p>Data<br>Request about <strong>{{ data['request-about-what'] }} - {{ data['enquiry-about']  }}</strong></p>-->
 
       </form>
 

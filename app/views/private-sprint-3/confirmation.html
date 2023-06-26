@@ -42,18 +42,17 @@
       </div>
 
       <p>We have sent you a confirmation email that includes your reference number.</p>
+      
       <h2 class="govuk-heading-m">What happens next</h2>
       {% if data['enquiry-about'] == "make a complaint" %}
-      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. 
+      <p>All complaints will be reviewed by BSR. Once we've reviewed your complaint we'll tell you what we are going to do. Reviewing your complaint may take us up to 21 days.</p>
       {% else %}
-      <p>Once we have evaluated your question we will contact you with an answer.
+      <p>We will review your question and contact you with an answer. This may take up to 21 working days.</p>
       {% endif %}
-      This may take up to 21 working days{% if data["enquiry-about"] == "ask a question" %} if we have to consult building safety experts {% endif %}.</p>
 
-      {% if data['enquiry-about'] == "make a complaint" %}
-        <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>
-      {% endif %}
-      <p><a href="">What did you think of this service?</a> (takes 30 seconds)</p>
+      <p><a href="">Print or save as PDF</a></p>
+            
+      <!--<p><a href="">What did you think of this service?</a> (takes 30 seconds)</p>-->
     </div>
   </div>
 
