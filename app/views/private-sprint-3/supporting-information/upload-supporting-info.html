@@ -11,6 +11,12 @@
 
 {% block content %}
 
+<style>
+  .govuk-summary-list__key {
+    width:60%
+  }
+</style>
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">About the occurrence</span>
@@ -24,12 +30,12 @@
 
     <p id="upload-update" class="govuk-body govuk-!-display-none" aria-live="assertive" aria-relevant="all">1 of 2 files uploaded</p>
 
-    <!--
-    <button id="upload-button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-      Upload another receipt
+    
+    <button id="upload-more" style="display:none" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add more files
     </button>
-    -->
-    <div class="govuk-form-group">
+    
+    <div id="upload-wrapper" class="govuk-form-group">
       <label class="govuk-label" for="upload-button">
         Upload supporting information
       </label>
@@ -61,13 +67,51 @@
 
 <script>
 document.getElementById("upload-button").addEventListener("click", fileUpload);
+document.getElementById("upload-more").addEventListener("click", showUploadButton);
 document.getElementById("upload-button").addEventListener("change", fileSelected);
 
 const fileRows = document.getElementById("file-row-container");
 const uploadUpdate = document.getElementById("upload-update");
 
+const myTimeout = setInterval(checkUploads, 1000);
+
+function checkUploads() {
+  console.log("checking uploads")
+  // check all the uploaded and review if any of them need updating
+  var filesUploading = document.getElementsByClassName('govuk-tag--yellow')
+
+  if (filesUploading.length > 0) {
+    for (i = 0; i < filesUploading.length; i++) {
+      console.log(filesUploading[i])
+      // do a random check and see if the file is uploaded
+      if (Math.floor(Math.random() * 3) == 2) {
+        // change the label
+        filesUploading[i].innerHTML = 'uploaded'
+        filesUploading[i].classList.add('govuk-tag--green')
+        filesUploading[i].classList.remove('govuk-tag--yellow')
+      }
+    }
+  }
+
+  filesUploading = document.getElementsByClassName('govuk-tag--yellow').length
+  filesUploaded =document.getElementsByClassName('govuk-tag--green').length
+
+  uploadUpdate.textContent = `${filesUploaded} of ${filesUploading + filesUploaded} files uploaded`;
+  uploadUpdate.classList.remove("govuk-!-display-none");
+}
+
+
+
 function fileUpload() {
   //console.log("upload clicked")
+}
+
+function showUploadButton(e) {
+  // remove the upload button and replace with an upload more button
+    e.preventDefault()
+    document.getElementById("upload-button").value = "";
+    document.getElementById("upload-wrapper").style.display = "block";
+    document.getElementById("upload-more").style.display = "none";
 }
 
 function fileSelected(e) {
@@ -89,6 +133,10 @@ function fileSelected(e) {
       </dd>
     `;
 
+    // remove the upload button and replace with an upload more button
+    document.getElementById("upload-wrapper").style.display = "none";
+    document.getElementById("upload-more").style.display = "block";  
+    
     let row = document.createElement('div');
     row.classList.add("govuk-summary-list__row")
     row.innerHTML = markup
