@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+<div class="email-heading"><p class="govuk-heading-m">Email template</p></div>
+{% endblock %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+body.govuk-template__body {
+  background-color: lightgrey;
+}
+
+.email-heading {
+  height: 70px;
+  background-color: black;
+  width: 1040px;
+  margin: auto;
+}
+
+.email-heading p {
+  color: white;
+  padding: 20px 40px 20px 40px;
+  
+}
+
+.govuk-width-container {
+  //max-width: 800px;
+  background-color: white;
+  padding: 0 40px 40px 40px;
+}
+  
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      
+
+      <h1 class="govuk-heading-l">Question to BSR received</h1>
+
+      <p>We have received your question to BSR about Whitehall 2, LS1.</p>
+
+      <h2 class="govuk-heading-m">Reference number</h2> 
+
+      <p><strong>HDJ2123F</strong></p>
+
+      <h2 class="govuk-heading-m"> What you told us</h2>
+
+      <p>There is a problem with the fire doors, I'm not sure if it's a complaint but I wanted to check as the building manager hasn't fixed it and it's been 3 months.</p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p>We will try to answer your question as soon as possible by email. We may need to contact other specialists within BSR. This may take up 21 working days. 
+
+      <p>If you don’t hear from us after 21 working days, contact BSR on 0300 790 6787, quoting your reference number</p>
+
+      <p>BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p></p>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

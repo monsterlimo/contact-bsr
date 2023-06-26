@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+ 
+{% if data['enquiry-about'] == "ask a question" %}
+  {% set type = "question" %}
+  {% set fallbackDesc = "I want advice about a high-rise residential building" %}  
+{% else %}
+  {% set type = "complaint"  %}
+  {% set fallbackDesc = "I want to make a complaint" %}  
+{% endif %}
+
+
+{% set title = type | capitalize + " received" %}
+
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        {% if data['enquiry-about'] == "make a complaint" %}
+          <h1 class="govuk-panel__title">Complaint received</h1>
+          {% if data['request-about-what'] == "building" %}
+            <div>We've received your complaint a building</div>
+          {% elif data['request-about-what'] == "person" %}
+            <div>We've received your complaint about a person or organisation</div>
+          {% else %}
+            <div>We've received your complaint about the Building Safety Regulator</div>
+          {% endif %}
+          
+        {% else %}
+          <h1 class="govuk-panel__title">We have received your question</h1>
+        {% endif %}
+        <div class="govuk-panel__body">
+          Reference number<br><strong><span aria-label="H, D, J, 2, 1, 2, 3, F">HDJ2123F</span></strong>
+        </div>
+      </div>
+
+      <p>We have sent you a confirmation email that includes your reference number.</p>
+      <h2 class="govuk-heading-m">What happens next</h2>
+      {% if data['enquiry-about'] == "make a complaint" %}
+      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. 
+      {% else %}
+      <p>Once we have evaluated your question we will contact you with an answer.
+      {% endif %}
+      This may take up to 21 working days{% if data["enquiry-about"] == "ask a question" %} if we have to consult building safety experts {% endif %}.</p>
+
+      {% if data['enquiry-about'] == "make a complaint" %}
+        <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>
+      {% endif %}
+      <p><a href="">What did you think of this service?</a> (takes 30 seconds)</p>
+    </div>
+  </div>
+
+{% endblock %}

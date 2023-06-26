@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+<div class="email-heading"><p class="govuk-heading-m">Email template</p></div>
+{% endblock %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+body.govuk-template__body {
+  background-color: lightgrey;
+}
+
+.email-heading {
+  height: 70px;
+  background-color: black;
+  width: 1040px;
+  margin: auto;
+}
+
+.email-heading p {
+  color: white;
+  padding: 20px 40px 20px 40px;
+  
+}
+
+.govuk-width-container {
+  //max-width: 800px;
+  background-color: white;
+  padding: 0 40px 40px 40px;
+}
+  
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      <h1 class="govuk-heading-l">Complaint to the Building Safety Regulator</h1>
+
+      <p>We will not investigate your complaint about Whitehall 2, LS1.</p>
+
+      <h2 class="govuk-heading-m">Reference number</h2> 
+
+      <p><strong>HDJ2123F</strong></p>
+
+      <p>After evaluation we have decided that there is insufficient evidence to support your complaint.</p>
+
+      <p>You can provide further <a href="">supporting information</a>, such as photographs or documents. Or you can email or phone BSR on 0300 790 6787 with your reference number.</p>
+
+      <p>BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+      <p>If we do not hear from you within [n] days, we will close the case.</p>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
