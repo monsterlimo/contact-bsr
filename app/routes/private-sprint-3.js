@@ -267,7 +267,7 @@ module.exports = router => {
             console.log("after: " + typeof(req.session.data['filesUploaded']))
         }
     
-        res.redirect('/private-sprint-3/supporting-information/review-uploads')
+        res.redirect('/private-sprint-3/check-your-answers')
     })
 
     router.post('/private-sprint-3/supporting-information/review-uploads', (req, res) => {
