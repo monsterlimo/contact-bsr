@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter the building registration application number" %}
+{% set title = "What is your complaint?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,22 +15,20 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        {{ govukInput({
+        <span class="govuk-caption-l">About the complaint</span>
+        
+        {{ govukCharacterCount({
+          name: "complaint-details",
+          id: "complaint-details",
+          maxlength: 500,
           label: {
             text: title,
             classes: "govuk-label--l",
             isPageHeading: true
-          },
-          hint: {
-            text: "This is the number you will have been given whern you registered the building with BSR"
-          },
-          id: "building-reg-number",
-          name: "building-reg-number",
-          classes: "govuk-input--width-20",
-          value: data['building-reg-number']
+          }
         }) }}
 
-        <p><a href="/private-sprint-4/about-the-building/postcode-lookup">I need to do this another way</a></p>
+        <p>Next we will ask if you have any supporting information to upload, such as documents or photos.</p>
 
         {{ govukButton({
           text: "Continue"

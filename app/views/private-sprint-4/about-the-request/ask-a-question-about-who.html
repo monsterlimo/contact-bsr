@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter the building registration application number" %}
+{% set title = "Who do you want to ask a question about?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,6 +15,19 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <span class="govuk-caption-l">About the question</span>
+
+        {% set notContactedAP %}
+          {{ govukInput({
+            label: {
+              text: "Tell us why you didn't contact the accountable person",
+              classes: "govuk-label--s"
+            },
+            id: "width-20",
+            name: "width-20"
+          }) }}
+        {% endset %}
+
         {{ govukInput({
           label: {
             text: title,
@@ -22,15 +35,11 @@
             isPageHeading: true
           },
           hint: {
-            text: "This is the number you will have been given whern you registered the building with BSR"
+            text: "For example a building inspector, designer or an accountable person such as a management company or landlord"
           },
-          id: "building-reg-number",
-          name: "building-reg-number",
-          classes: "govuk-input--width-20",
-          value: data['building-reg-number']
+          id: "about-who",
+          name: "about-who"
         }) }}
-
-        <p><a href="/private-sprint-4/about-the-building/postcode-lookup">I need to do this another way</a></p>
 
         {{ govukButton({
           text: "Continue"

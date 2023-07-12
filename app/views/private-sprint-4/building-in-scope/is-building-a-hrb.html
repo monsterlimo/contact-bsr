@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+{% set title = "Is the building a HRB?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "where-do-you-live",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "england",
+              text: "Yes"
+            },
+            {
+              value: "scotland",
+              text: "No"
+            },
+            {
+              value: "scotland",
+              text: "I'm not sure [we can ask more questions here - floors / height etc]"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "Check if your building is a HRB",
+          text: "to do"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

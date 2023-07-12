@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+{% set title = "Upload supporting information" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the occurrence</span>
+
+        
+      {%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
+      {%- from "govuk/components/button/macro.njk" import govukButton -%}
+      {%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+
+      {% set uploadHtml %}
+        {{ govukFileUpload({
+          id: "documents",
+          name: "documents",
+          classes: 'moj-multi-file-upload__input',
+          label: {
+            text: "Upload a file",
+            classes: 'govuk-label--m'
+          },
+          attributes: { multiple: '' },
+          errorMessage: errorMessage
+        }) }}
+        {{govukButton({
+          text: 'Upload file',
+          classes: 'govuk-button--secondary moj-multi-file-upload__button'
+        })}}
+      {% endset %}
+      {{ mojMultiFileUpload({
+        uploadedFiles: {
+          heading: { text: 'Files added' },
+          items: uploadedFiles
+        },
+        uploadHtml: uploadHtml
+      }) }}
+      {{govukButton({
+        text: 'Continue'
+      })}}
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+if(typeof MOJFrontend.MultiFileUpload !== 'undefined') {
+  new MOJFrontend.MultiFileUpload({
+    container: $('.moj-multi-file-upload'),
+    uploadUrl: '/ajax-upload-url',
+    deleteUrl: '/ajax-delete-url'
+  });
+}
+</script>
+{% endblock %}

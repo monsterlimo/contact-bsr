@@ -1,0 +1,203 @@
+{% extends "layouts/main.html" %}
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block header %}
+  {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+  {% set html %}
+    <p class="govuk-body">We’d like to use analytics cookies so we can understand how you use this site.</p>
+    <p class="govuk-body">We also use essential cookies to remember if you’ve accepted analytics cookies.</p>
+  {% endset %}
+
+  {% set acceptHtml %}
+    <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="cookies">change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+  {% set rejectHtml %}
+    <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="cookies">change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+
+
+    {{ govukCookieBanner({
+      classes: "js-cookies-banner",
+      messages: [
+        {
+            headingText: "Cookies on " + serviceName,
+            html: html,
+            actions: [
+                {
+                    text: "Accept analytics cookies",
+                    type: "button",
+                    classes: "js-cookies-button-accept"
+                },
+                {
+                    text: "Reject analytics cookies",
+                    type: "button",
+                    classes: "js-cookies-button-reject"
+                },
+                {
+                    text: "View cookie preferences",
+                    href: "cookies"
+                }
+            ],
+            classes: "js-question-banner"
+        },
+        {
+            html: acceptHtml,
+            role: "alert",
+            actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    classes: "js-hide"
+                }
+            ],
+            classes: "js-cookies-accepted",
+            hidden: true
+        },
+        {
+            html: rejectHtml,
+            role: "alert",
+            actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    classes: "js-hide"
+                }
+            ],
+            classes: "js-cookies-rejected",
+            hidden: true
+        }
+    ]
+    }) }}
+
+
+
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          {% if serviceName %} {{ serviceName }} {% endif %}
+        </h1>
+
+        <p>Anyone in England can use this service to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>complain to the Building Safety Regulator (BSR)</li>
+          <li>ask BSR a question</li>
+        </ul>
+
+        <p><a href="">Find out what BSR is</a>.</p>
+
+        <p>If you prefer not to provide us with your name and contact details, someone else you trust can ask us a question or make a complaint on your behalf.</p>
+
+        <h2 class="govuk-heading-m">When to complain to BSR</h2>
+
+        <p>You can complain to BSR about:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="">issues in a high-rise residential building that could lead to fire spreading</a></li>
+          <li><a href="">issues in a high-rise residential building that could lead to part or all of the building collapsing</a></li>
+          <li><a href="">issues with fire safety in a high-rise residential building that is under design and construction</a></li>
+          <li><a href="">people and organisations BSR regulates</a>, for example, building inspectors and people accountable for safety in a building</li>
+          <li><a href="">BSR</a> itself</li>
+        </ul>
+
+        <p>If you want to complain about a building, first make your complaint to a person accountable for building safety. For example, the building’s landlord or management company. Use this service if they have not dealt with your issue.</p>
+
+        <h2 class="govuk-heading-m">When to ask BSR a question</h2>
+        <p>You can use this service to ask a question about anything BSR is responsible for, such as its regulations or services, and the people, organisations and buildings it regulates.</p>
+
+        <h2 class="govuk-heading-m">When not to use this service</h2>
+
+        <p>Do not use this service to report concerns about anti-social behaviour or the general cleanliness of a building. Report these issues to your landlord or management company.</p>
+
+        <h2 class="govuk-heading-m">Before you start</h2>
+        
+        <p>To complain to us, we will ask you for:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the building address, if the complaint is about a building</li>
+          <li>your contact details, or the contact details of someone acting on your behalf, so we know who to respond to</li>
+          <li>the name of the person or organisation you have previously complained to, if relevant</li>
+          <li>details of your complaint</li>
+          <li>any supporting information, such as photographs or documents you want to upload</li>
+        </ul>
+
+        <p>To ask us a question, we will ask you for:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your contact details, or the contact details of someone acting on your behalf, so we know who to respond to</li>
+          <li>details of your question</li>
+        </ul>
+ 
+
+        <h2 class="govuk-heading-m">If you can’t use this service</h2>
+
+        <p>If you cannot use the online service, call BSR on <a href="tel:03007906787">0300 790 6787</a>. BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+        <p>A translation service is available if you would prefer to speak on the phone to BSR in a language other than English.</p>
+
+        {{ govukButton({
+          text: "Start now",
+          isStartButton: true
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+
+  <script>
+    var acceptButton = document.querySelector('.js-cookies-button-accept')
+    var rejectButton = document.querySelector('.js-cookies-button-reject')
+
+    var acceptedBanner = document.querySelector('.js-cookies-accepted')
+    var rejectedBanner = document.querySelector('.js-cookies-rejected')
+    var questionBanner = document.querySelector('.js-question-banner')
+    var cookieBanner = document.querySelector('.js-cookies-banner')
+
+    function showBanner(banner) {
+        questionBanner.setAttribute('hidden', 'hidden')
+        banner.removeAttribute('hidden')
+
+        // Shift focus to the banner
+        banner.setAttribute('tabindex', '-1')
+        banner.focus()
+
+        banner.addEventListener('blur', function () {
+            banner.removeAttribute('tabindex')
+        })
+    }
+
+    acceptButton.addEventListener('click', function (event) {
+        showBanner(acceptedBanner)
+        event.preventDefault()
+    })
+
+    rejectButton.addEventListener('click', function (event) {
+        showBanner(rejectedBanner)
+        event.preventDefault()
+    })
+
+    acceptedBanner.querySelector('.js-hide').addEventListener('click', function() {
+      cookieBanner.setAttribute('hidden', 'hidden')
+    })
+
+    rejectedBanner.querySelector('.js-hide').addEventListener('click', function() {
+      cookieBanner.setAttribute('hidden', 'hidden')
+    })
+  </script>
+
+{% endblock %}

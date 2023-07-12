@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+{% set title = "Who did you contact?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the accountable person</span>
+
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: 'Organisation'
+            },
+            hint: {
+              text: "If you don't know the name of the organisation tell us the name of the person you contacted "
+            },
+            id: "ap-name",
+            name: "ap-name",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Their role (optional)'
+            },
+            id: "ap-role",
+            name: "ap-role",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Email (optional)'
+            },
+            id: "ap-email",
+            name: "ap-email",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Phone (optional)'
+            },
+            id: "ap-phone",
+            name: "ap-phone",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

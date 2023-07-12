@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter the building registration application number" %}
+{% set title = "Number of residential units" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -13,24 +13,24 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <form action="" method="post">
+
+        <h1 class="govuk-heading-l">{{title}}</h1>
+        <p>A residential unit is a flat, maisonette, student bedroom, room or any other place where someone could live.</p>
+       
         {{ govukInput({
           label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "Number of residential units",
+            isPageHeading: false,
+            classes: "govuk-label--s"
           },
           hint: {
-            text: "This is the number you will have been given whern you registered the building with BSR"
+            text: "Count all of the residential units, whether someone is living in them or not."
           },
-          id: "building-reg-number",
-          name: "building-reg-number",
-          classes: "govuk-input--width-20",
-          value: data['building-reg-number']
+          id: "number-units",
+          name: "number-units",
+          classes: "govuk-input--width-3"
         }) }}
-
-        <p><a href="/private-sprint-4/about-the-building/postcode-lookup">I need to do this another way</a></p>
 
         {{ govukButton({
           text: "Continue"

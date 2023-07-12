@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+{% set title = "What do you want to complain about?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the request</span>
+
+        {{ govukRadios({
+          name: "request-about-what",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "building",
+              text: "a building or a person who manages the building safety"
+            },
+            {
+              value: "person",
+              text: "a building inspector"
+            },
+            {
+              value: "bsr",
+              text: "the Building Safety Regulator"
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
