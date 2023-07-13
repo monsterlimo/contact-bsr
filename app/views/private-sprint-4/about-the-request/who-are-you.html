@@ -22,7 +22,7 @@
             name: "other-duty-holder",
             classes: "govuk-!-width-one-half",
             label: {
-              text: "Your or your organisation's role"
+              text: "Your role"
             }
           }) }}
         {% endset -%}
@@ -41,7 +41,7 @@
             {
               value: "resident",
               text: "a resident"
-            },
+            } if data['request-about-what'] != "unoccupied",
             {
               value: "public",
               text: "a member of the public"
