@@ -26,8 +26,10 @@ module.exports = router => {
     router.post('/private-sprint-4/about-the-request/who-are-you', (req, res) => {       
         if (req.session.data['request-about-what'] == "building") {
             res.redirect('/private-sprint-4/about-the-building/postcode-lookup')
-        } else {
+        } else if (req.session.data['request-about-what'] == "unoccupied") {
             // bsr, other, person
+            res.redirect('/private-sprint-4/about-the-building/do-you-know-the-address')
+        } else {
             res.redirect('/private-sprint-4/about-the-person/enter-your-name')
         }
     })
@@ -192,7 +194,7 @@ module.exports = router => {
         if (req.session.data['enquiry-about'] == "ask a question") {
             res.redirect('/private-sprint-4/about-the-request/enter-advice-required')   
         } else {
-            res.redirect('/private-sprint-4/about-the-complaint/complaint-details')   
+            res.redirect('/private-sprint-4/about-the-complaint/have-you-contacted-the-ap')   
         }
     })
 
@@ -200,7 +202,7 @@ module.exports = router => {
         if (req.session.data['enquiry-about'] == "ask a question") {
             res.redirect('/private-sprint-4/about-the-request/enter-advice-required')   
         } else {
-            res.redirect('/private-sprint-4/about-the-complaint/complaint-details')   
+            res.redirect('/private-sprint-4/about-the-complaint/have-you-contacted-the-ap')   
         }
     })
 
