@@ -35,7 +35,15 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-building/do-you-know-the-address', (req, res) => {
-        res.redirect('/private-sprint-4/about-the-building/postcode-lookup')
+        if (req.session.data['address-known'] == "yes") {
+            res.redirect('/private-sprint-4/about-the-building/postcode-lookup')
+        } else {
+            res.redirect('/private-sprint-4/about-the-building/building-location')
+        }
+    })
+
+    router.post('/private-sprint-4/about-the-building/building-location', (req, res) => {
+        res.redirect('/private-sprint-4/about-the-person/enter-your-name')
     })
     
     router.post('/private-sprint-4/about-the-building/postcode-lookup', (req, res) => {
@@ -91,7 +99,7 @@ module.exports = router => {
         }
        } else {
         // complaint
-        if (req.session.data['request-about-what'] == "building") {
+        if (req.session.data['request-about-what'] == "building" || req.session.data['request-about-what'] == "unoccupied") {
             // building
             if (req.session.data['building-region']) {
                 // HRB public check
