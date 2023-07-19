@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+{% set title = "Are you" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% set otherTypeOfPerson %}
+          {{ govukInput({
+            label: {
+              text: "Your role"
+            },
+            classes: "govuk-input--width-20",
+            id: "your-role",
+            name: "your-role"
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "type-of-person",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "public",
+              text: "a resident or member of the public"
+            },
+            {
+              value: "professional",
+              text: "an accountable person (AP), principal accountable person (PAP), principal contractor or principal designer"
+            },
+            {
+              value: "public",
+              text: "other",
+              conditional: {
+                html: otherTypeOfPerson
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

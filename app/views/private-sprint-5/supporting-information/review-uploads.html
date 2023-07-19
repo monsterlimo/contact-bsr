@@ -1,0 +1,130 @@
+{% extends "layouts/main.html" %}
+{% set title = "Summary of your supporting information" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .govuk-summary-list__key {
+    font-weight: 400
+  }
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">About the occurrence</span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+      <!--
+      <dl class="govuk-summary-list">
+      
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ file }}
+            </dt>
+              <dd class="govuk-summary-list__value">
+              <a class="govuk-link" href="#">
+                Add a description <span class="govuk-visually-hidden">to {{ file }}</span>
+              </a>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> {{ file }}</span>
+              </a>
+            </dd>
+          </div>
+        -->
+
+
+
+
+      <dl class="govuk-summary-list">
+        {% for file in data['filesUploaded'] %}
+      
+      
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ file }}
+            </dt>
+             <!-- <dd class="govuk-summary-list__value">
+              <a class="govuk-link" href="#">
+                Add a description <span class="govuk-visually-hidden">to {{ file }}</span>
+              </a>
+            </dd>-->
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> {{ file }}</span>
+              </a>
+            </dd>
+          </div>
+     {#   {{ govukSummaryList({
+          card: {
+            title: {
+              text: file
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Add a description",
+                  visuallyHiddenText: "of University of Gloucestershire"
+                },
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "from University of Gloucestershire"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Filename"
+              },
+              value: {
+                html: file
+              }
+            },
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                html: "-"
+              }
+            }
+          ]
+        }) }}
+        #}
+
+      {% else %}
+        {{ govukInsetText({
+          text: "You have not uploaded any supporting information"
+        }) }}
+      {% endfor %}
+      </dl>
+
+      <p><a href="/private-sprint-3/supporting-information/upload-supporting-info">Add more supporting information</a></p>
+
+      <form action="" method="post" novalidate>
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

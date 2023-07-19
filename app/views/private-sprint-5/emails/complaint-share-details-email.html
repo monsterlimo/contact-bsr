@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+<div class="email-heading"><p class="govuk-heading-m">Email template</p></div>
+{% endblock %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+body.govuk-template__body {
+  background-color: lightgrey;
+}
+
+.email-heading {
+  height: 70px;
+  background-color: black;
+  width: 1040px;
+  margin: auto;
+}
+
+.email-heading p {
+  color: white;
+  padding: 20px 40px 20px 40px;
+  
+}
+
+.govuk-width-container {
+  //max-width: 800px;
+  background-color: white;
+  padding: 0 40px 40px 40px;
+}
+  
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Complaint to the Building Safety Regulator</h1>
+
+      <p>You need to consent to sharing information about you and your complaint before taking enforcement action against [accountable person]:</p>
+
+      <h2 class="govuk-heading-m">Reference number</h2> 
+
+      <p><strong>HDJ2123F</strong></p>
+
+      <h2 class="govuk-heading-m">What you need to do</h2>
+
+      <p>You need to give us permission to share your details. If we don't hear from you after 7 working days then you case will be closed.</p>
+
+      <p>We will share your complaint details, your name, your contact details and your building address.</p>
+
+      <p>Without your consent we will not be able to take your complaint any further.</p>
+
+      <p><a href="">Accept and share you complaint details</a></p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p>Investigations take time. If you don’t hear from us after [nn] working days, contact us, quoting your reference number.</p>
+
+      <p>Email or phone BSR on 0300 790 6787</p>
+
+      <p>BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+      <p>BSR Customer Service Team</p>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
