@@ -22,7 +22,7 @@
         {{ govukCharacterCount({
           name: "complaint-problem-details",
           id: "complaint-problem-details",
-          maxlength: 750,
+          maxlength: 500,
           label: {
             text: "What is your issue?",
             classes: "govuk-label--s",
@@ -35,7 +35,7 @@
           namePrefix: "complaint-problem-appear",
           fieldset: {
             legend: {
-              text: "When did you first notice the issue?",
+              text: "Approximately when did you first notice the issue?",
               isPageHeading: false,
               classes: "govuk-label--s"
             }
@@ -44,12 +44,12 @@
             text: "For example, 23 09 2023"
           }
         }) }}
-
+{#
         {% set approxDate %}
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
               <legend class="govuk-fieldset__legend govuk-label--s">
-                  Approximate date you first noticed the issue
+                  Approximately when did you first notice the issue?
               </legend>
               <div id="passport-issued-hint" class="govuk-hint">
                 For example, 09 2023
@@ -80,14 +80,14 @@
           summaryText: "I don't know the exact date",
           html: approxDate
         }) }}
-
+#}
 
         {% if data['contacted-ap'] == "yes" %}
 
         {{ govukCharacterCount({
           name: "complaint-problem-who",
           id: "complaint-problem-who",
-          maxlength: 500,
+          maxlength: 250,
           rows: 3,
           label: {
             text: "Who have you already contacted about the problem?",

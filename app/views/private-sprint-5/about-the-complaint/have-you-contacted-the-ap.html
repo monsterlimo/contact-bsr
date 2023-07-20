@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Have you complained about this issue to an accountable person?" if data['request-about-what'] == "building" else "Have you complained about this issue to the person or organisation before?" %}
+{% set title = "Have you complained about this issue to someone responsible for building safety?" if data['request-about-what'] == "building" else "Have you complained about this issue to the person or organisation before?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

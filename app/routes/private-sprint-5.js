@@ -47,7 +47,11 @@ module.exports = router => {
     })
     
     router.post('/private-sprint-5/about-the-building/postcode-lookup', (req, res) => {
-        res.redirect('/private-sprint-5/about-the-building/choose-address')
+        if (req.session.data['building-postcode'].toUpperCase() == "SW1") {
+            res.redirect('/private-sprint-5/about-the-building/confirm-address')
+        } else {
+            res.redirect('/private-sprint-5/about-the-building/choose-address')
+        }
     })
 
     router.post('/private-sprint-5/about-the-building/choose-address', (req, res) => {
@@ -322,6 +326,10 @@ module.exports = router => {
 
     router.post('/private-sprint-5/check-your-answers', (req, res) => {
         res.redirect('/private-sprint-5/confirmation')
+    })
+
+    router.post('/private-sprint-5/about-the-person/share-details', (req, res) => {
+        res.redirect('/private-sprint-5/about-the-person/confirmation-share-details')
     })
     
 }

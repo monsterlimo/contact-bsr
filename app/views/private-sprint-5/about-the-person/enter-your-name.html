@@ -23,11 +23,10 @@
             isPageHeading: true
           }
         }) %}
-        {% if data['enquiry-about'] == "make a complaint"  %}
           {% if data['type-of-person'] == "resident" or data['type-of-person'] == "public" or data['type-of-person'] == "other" %}
-          <p>If you prefer not to provide us with your name and contact details, someone else you trust can make a complaint on your behalf.</p>
+          <p>If you don't want to give us your name and contact details, you can enter the name of someone you trust.</p>
           {% endif %}
-        {% endif %}
+
           {{ govukInput({
             label: {
               text: 'First name'

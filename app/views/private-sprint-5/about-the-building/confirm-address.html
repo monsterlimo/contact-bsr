@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Confirm the building" %}
+{% set title = "Confirm the building address" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -48,38 +48,6 @@
               },
               value: {
                 text: "Leeds, LS1"
-              }
-            },
-            {
-              key: {
-                text: "Number of floors"
-              },
-              value: {
-                text: "10"
-              }
-            },
-            {
-              key: {
-                text: "Building height"
-              },
-              value: {
-                text: "20.02m"
-              }
-            } if data['type-of-person'] == "professional",
-            {
-              key: {
-                text: "Number of residential units"
-              },
-              value: {
-                text: "57"
-              }
-            } if data['type-of-person'] == "professional",
-            {
-              key: {
-                text: "Principal accountable person"
-              },
-              value: {
-                text: "ABC Housing PLC"
               }
             }
           ]

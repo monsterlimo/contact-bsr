@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Select the address of the building" %}
+{% set title = "Select the building address" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,6 +16,10 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the building</span>
+
+
+
+
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
           name: "building-address",
@@ -27,7 +31,7 @@
             }
           },
           hint: {
-            text: "3 addresses found"
+            html: "<p>3 addresses found</p> This won't include your personal address, for example your flat number"
           },
           items: [
             {
@@ -50,7 +54,7 @@
         <p><a href="enter-the-building-address">Enter address manually</a></p>
 
         {{ govukButton({
-          text: "Continue"
+          text: "Confirm and continue"
         }) }}
 
       </form>

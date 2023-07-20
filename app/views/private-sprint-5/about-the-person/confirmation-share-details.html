@@ -1,0 +1,28 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Consent to share details received</h1>
+
+        <div class="govuk-panel__body">
+          Reference number<br><strong><span aria-label="H, D, J, 2, 1, 2, 3, F">HDJ2123F</span></strong>
+        </div>
+      </div>
+
+      <p>We have received your consent to share your complaint details.</p>
+      
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <!--<p>If you have chosen not to share your details will will close your complaint in 7 days</p>-->
+      <p>We will contact you if we need further details about the complaint.</p>
+            
+    </div>
+  </div>
+
+{% endblock %}
