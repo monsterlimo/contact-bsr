@@ -229,7 +229,7 @@
               text: "Your name"
             },
             value: {
-              text:  data['contact-full-name'] or "John Smith"
+              text:  (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
             },
             actions: {
               items: [
