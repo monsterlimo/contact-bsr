@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+{% set title = "How many floors does the building have?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <p>Count all floors from ground level to the top floor that you walk on.</p>
+        <p>Include the following whether there's a residential unit or not:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>any floors at or above ground level</li>
+          <li>any floors that people could use</li>
+          <li>any mezzanine floors that are at least 50% of the area of any of the other floors</li>
+        </ul>
+
+        <p>Do not count:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>floors below ground level</li>
+          <li>the roof</li>
+          <li>other floors that people cannot use</li>
+          <li>any mezzanine floors that are less than 50% of the area of any of the other floors</li>
+        </ul>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Help with ground level
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>Ground level is the level of land immediately next to. If that land is uneven, count from the lowest part of the land immediately next to.</p>
+            <p>Any ceiling below that level is below ground level.</p>
+          </div>
+        </details>
+
+        {{ govukInput({
+          label: {
+            text: "Number of floors above ground level",
+            isPageHeading: false,
+            classes: "govuk-label--s"
+          },
+          id: "number-floors",
+          name: "number-floors",
+          classes: "govuk-input--width-3"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

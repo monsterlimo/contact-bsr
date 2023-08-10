@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+{% set title = "Are you a resident of the building?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% set noneResident  %}
+          {{ govukInput({
+            label: {
+              text: "Your role",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            id: "event-name",
+            name: "event-name",
+            classes: "govuk-input--width-20"
+          }) }}
+        {% endset %}
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "building-resident",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select 'yes' if you are a resident or acting on behalf of a resident."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No",
+              conditional: {
+                html: noneResident
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

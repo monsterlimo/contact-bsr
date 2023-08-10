@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+{% set title = "Who do you want to ask a question about?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the question</span>
+
+        {% set notContactedAP %}
+          {{ govukInput({
+            label: {
+              text: "Tell us why you didn't contact the accountable person",
+              classes: "govuk-label--s"
+            },
+            id: "width-20",
+            name: "width-20"
+          }) }}
+        {% endset %}
+
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example a building inspector, designer or an accountable person such as a management company or landlord"
+          },
+          id: "about-who",
+          name: "about-who"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

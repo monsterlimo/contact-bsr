@@ -15,6 +15,15 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
     
+    {% set emailsV11 %}
+      <p><a href="private-sprint-6/emails/complaint-email">Complaint - Confirmation</a></p>
+      <p><a href="private-sprint-6/emails/complaint-investigation-email">Complaint - Investigation</a></p>
+      <p><a href="private-sprint-6/emails/complaint-share-details-email">Complaint - Share details</a></p>
+      <p><a href="private-sprint-6/emails/complaint-enforcement-action-email">Complaint - Enforcement action</a></p>
+      <p><a href="private-sprint-6/emails/question-email">Question - Confirmation</a></p>
+      <p><a href="private-sprint-6/emails/complaint-case-closed-email">Case Closed</a></p>
+    {% endset %}
+
     {% set emailsV10 %}
       <p><a href="private-sprint-5/emails/complaint-email">Complaint - Confirmation</a></p>
       <p><a href="private-sprint-5/emails/complaint-investigation-email">Complaint - Investigation</a></p>
@@ -73,14 +82,19 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     {% endset %}
 
     <h2 class="govuk-heading-m">Private Beta Current</h2>
+    <p><a href="private-sprint-6/start">Sprint 6 (v11) - Advice and complaints</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emailsV11
+    }) }}
+    
+
+    <h2 class="govuk-heading-m">Private Beta</h2>
     <p><a href="private-sprint-5/start">Sprint 5 (v10) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",
       html: emailsV10
     }) }}
-    
-
-    <h2 class="govuk-heading-m">Private Beta</h2>
     <p><a href="private-sprint-4/start">Sprint 4 (v9) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",
