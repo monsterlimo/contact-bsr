@@ -91,46 +91,97 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-6/about-the-person/enter-your-contact-details', (req, res) => {
-       if (req.session.data['enquiry-about'] == "ask a question") {
-        // advice
-        if (req.session.data['request-about-what'] == "person") {
-            res.redirect('/private-sprint-6/about-the-request/enter-advice-required')
+        // check if both contact and email have been entered
+        if (req.session.data['contact-email'] && req.session.data['contact-number']) {
+            //console.log('both entered')
+            res.redirect('/private-sprint-6/about-the-person/contact-preference')
         } else {
-            // building
-            if (req.session.data['building-region']) {
-                // HRB public check
-                if (req.session.data['type-of-person'] == "professional") {
-                    res.redirect('/private-sprint-6/building-in-scope/prof-number-of-floors')
+            if (req.session.data['enquiry-about'] == "ask a question") {
+                // advice
+                if (req.session.data['request-about-what'] == "person") {
+                    res.redirect('/private-sprint-6/about-the-request/enter-advice-required')
                 } else {
-                    res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+                    // building
+                    if (req.session.data['building-region']) {
+                        // HRB public check
+                        if (req.session.data['type-of-person'] == "professional") {
+                            res.redirect('/private-sprint-6/building-in-scope/prof-number-of-floors')
+                        } else {
+                            res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+                        }
+                    } else {
+                        // HRB
+                        res.redirect('/private-sprint-6/about-the-request/enter-advice-required')
+                    }
                 }
-            } else {
-                // HRB
-                res.redirect('/private-sprint-6/about-the-request/enter-advice-required')
-            }
-        }
-       } else {
-        // complaint
-        if (req.session.data['request-about-what'] == "building" || req.session.data['request-about-what'] == "unoccupied") {
-            // building
-            if (req.session.data['building-region']) {
-                // HRB public check
-                if (req.session.data['type-of-person'] == "professional") {
-                    res.redirect('/private-sprint-6/building-in-scope/prof-number-of-floors')
+               } else {
+                // complaint
+                if (req.session.data['request-about-what'] == "building" || req.session.data['request-about-what'] == "unoccupied") {
+                    // building
+                    if (req.session.data['building-region']) {
+                        // HRB public check
+                        if (req.session.data['type-of-person'] == "professional") {
+                            res.redirect('/private-sprint-6/building-in-scope/prof-number-of-floors')
+                        } else {
+                            res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+                        }
+                    } else {
+                        // HRB
+                        res.redirect('/private-sprint-6/about-the-complaint/complaint-details')
+                    }
+                } else if (req.session.data['request-about-what'] == "person") {
+                    res.redirect('/private-sprint-6/about-the-complaint/complaint-about-who')
                 } else {
-                    res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+                    res.redirect('/private-sprint-6/about-the-complaint/complaint-details-bsr')
                 }
-            } else {
-                // HRB
-                res.redirect('/private-sprint-6/about-the-complaint/complaint-details')
-            }
-        } else if (req.session.data['request-about-what'] == "person") {
-            res.redirect('/private-sprint-6/about-the-complaint/complaint-about-who')
-        } else {
-            res.redirect('/private-sprint-6/about-the-complaint/complaint-details-bsr')
+               }
         }
-       }
     })
+
+    router.post('/private-sprint-6/about-the-person/contact-preference', (req, res) => {
+
+        if (req.session.data['enquiry-about'] == "ask a question") {
+                // advice
+                if (req.session.data['request-about-what'] == "person") {
+                    res.redirect('/private-sprint-6/about-the-request/enter-advice-required')
+                } else {
+                    // building
+                    if (req.session.data['building-region']) {
+                        // HRB public check
+                        if (req.session.data['type-of-person'] == "professional") {
+                            res.redirect('/private-sprint-6/building-in-scope/prof-number-of-floors')
+                        } else {
+                            res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+                        }
+                    } else {
+                        // HRB
+                        res.redirect('/private-sprint-6/about-the-request/enter-advice-required')
+                    }
+                }
+               } else {
+                // complaint
+                if (req.session.data['request-about-what'] == "building" || req.session.data['request-about-what'] == "unoccupied") {
+                    // building
+                    if (req.session.data['building-region']) {
+                        // HRB public check
+                        if (req.session.data['type-of-person'] == "professional") {
+                            res.redirect('/private-sprint-6/building-in-scope/prof-number-of-floors')
+                        } else {
+                            res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+                        }
+                    } else {
+                        // HRB
+                        res.redirect('/private-sprint-6/about-the-complaint/complaint-details')
+                    }
+                } else if (req.session.data['request-about-what'] == "person") {
+                    res.redirect('/private-sprint-6/about-the-complaint/complaint-about-who')
+                } else {
+                    res.redirect('/private-sprint-6/about-the-complaint/complaint-details-bsr')
+                }
+               }
+    })
+
+
 
     router.post('/private-sprint-6/about-the-complaint/complaint-details-bsr', (req, res) => {
         res.redirect('/private-sprint-6/supporting-information/upload-supporting-info')

@@ -50,7 +50,7 @@ body.govuk-template__body {
 
       <h2 class="govuk-heading-m"> What you told us</h2>
 
-      <p>There is a problem with the fire doors, I'm not sure if it's a complaint but I wanted to check as the building manager hasn't fixed it and it's been 3 months.</p>
+      <p>{{ data['question-details']  or "There is a problem with the fire doors and they've not been fixed. I've complained to the building manager a few months ago and nothing has happened." }}</p>
 
       <h2 class="govuk-heading-m">What happens next</h2>
 

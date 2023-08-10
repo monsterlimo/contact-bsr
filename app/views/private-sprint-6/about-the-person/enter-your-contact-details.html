@@ -25,22 +25,9 @@
           
         }) %}
 
-        <!--<p>We collect your details so we can respond to you. We store your details in accordance with our <a href="">privacy policy</a>.</p>
-        <p>You can provide us with your email, phone number or both.</p>-->
         {% if data['type-of-person'] == "resident" or data['type-of-person'] == "public" or data['type-of-person'] == "other" %}
           <p>If you don't want to give us your name and contact details, you can enter the contacts of someone you trust</p> 
         {% endif %}
-
-        
-        {#
-        {% if data['enquiry-about'] == "make a complaint" %}
-          <p>Without your contact details we cannot respond to you.</p>
-        {% else %}
-          <p>Without your contact details we cannot respond to you.</p>
-        {% endif %}
-      
-        <p>If you are acting on behalf of someone else, enter your details so we can respond to you.</p>
-        #}
 
           {{ govukInput({
             label: {

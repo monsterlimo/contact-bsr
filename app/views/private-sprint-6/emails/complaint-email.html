@@ -48,16 +48,34 @@ body.govuk-template__body {
 
       <p><strong>HDJ2123F</strong></p>
 
-      <h2 class="govuk-heading-m">Summary of what you told us</h2>
+      <h2 class="govuk-heading-m">Summary of what you told us</h2>   
+      
+      {% if data['request-about-what'] == "building" %}
+      <h3 class="govuk-heading-s">What is the problem?</h2>
+      <p>{{ data['complaint-problem-details'] or "There is a problem with the fire doors and they've not been fixed. I've complained to the building manager a few months ago and nothing has happened" }}</p>
+          
+      <h3 class="govuk-heading-s">When did you first notice the issue?</h2>
+      <p>{{ data['complaint-problem-appear-day'] + "-" + data['complaint-problem-appear-month'] + "-" + data['complaint-problem-appear-year'] }}</p>
+          
+      <h3 class="govuk-heading-s">Who have you already contacted about the problem?</h2>
+      <p>{{ data['complaint-problem-who'] or "Yes" }}</p>
+      {% endif %}
 
-      <p>There is a problem with the fire doors and they've not been fixed. I've complained to the building manager a few months ago and nothing has happened.</p>
+      {% if data['request-about-what'] == "person" %}
+      <h3 class="govuk-heading-s">Person or organisation the complaint is about</h2>
+      <p>{{ data['complaint-about-who'] or "My landlord" }}</p>
+      {% endif %}
 
-      <h2 class="govuk-heading-m">Your supporting information</h2>
+      {% if data['request-about-what'] != "building" %}
+      <h3 class="govuk-heading-s">Details of the complaint</h2>
+      <p>{{data['complaint-details'] or "My landlord has not fixed the fire doors" }}</p>
+      {% endif %}
 
+      <h3 class="govuk-heading-s">Your supporting information</h2>
       <ul class="govuk-list">
-      <li>image-1234.png</li>
-      <li>email-screenshot.jpg</li>
-      <li>further-details.doc</li>
+        <li>image-1234.png</li>
+        <li>email-screenshot.jpg</li>
+        <li>further-details.doc</li>
       </ul>
 
       <h2 class="govuk-heading-m">What happens next</h2>

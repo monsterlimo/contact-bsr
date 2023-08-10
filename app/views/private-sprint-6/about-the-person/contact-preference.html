@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+{% set title = "How do you want to be contacted by BSR?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
+
+        {{ govukRadios({
+          name: "type-of-person",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "email",
+              text: "email"
+            },
+            {
+              value: "phone",
+              text: "phone"
+            },
+            {
+              value: "both",
+              text: "both"
+            }
+          ]
+        }) }}
+        
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
