@@ -28,6 +28,7 @@
           }) }}
         {% endset -%}
 
+
         {{ govukRadios({
           name: "request-about-what",
           fieldset: {
@@ -40,19 +41,19 @@
           items: [
             {
               value: "unoccupied",
-              text: "an unoccupied building being built or designed"
+              text: "An unoccupied building being built or designed"
             },
             {
               value: "person",
-              text: "a building inspector"
+              text: "A building inspector"
             },
             {
               value: "bsr",
-              text: "the Building Safety Regulator"
+              text: "BSR"
             },
             {
               value: "other",
-              text: "something else",
+              text: "Something else",
               conditional: {
                 html: otherComplaint
               }
