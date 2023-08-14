@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How do you want to be contacted by BSR?" %}
+{% set title = "How would you like BSR to contact you?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -26,18 +26,25 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "We will try to use any preference you have."
+          },
           items: [
             {
               value: "email",
-              text: "email"
+              text: "By email"
             },
             {
               value: "phone",
-              text: "phone"
+              text: "By telephone"
             },
             {
               value: "both",
-              text: "both"
+              text: "By email and telephone"
+            },
+            {
+              value: "both",
+              text: "I don't mind"
             }
           ]
         }) }}

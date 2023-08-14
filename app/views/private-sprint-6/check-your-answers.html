@@ -15,7 +15,6 @@
     <div class="govuk-grid-column-three-quarters-from-desktop">
 
       <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>Review the information you want to send us</p>
 
       <h2 class="govuk-heading-m">About the request</h2>
       {{ govukSummaryList({
@@ -23,7 +22,7 @@
         rows: [
           {
             key: {
-              text: "How can the Building Safety Regulator help you?"
+              text: "How can BSR help you?"
             },
             value: {
               text: (data['enquiry-about'] | capitalize) or "Advice"
@@ -40,7 +39,7 @@
           },
           {
             key: {
-              text: "What do you want to contact the Building Safety Regulator about?"
+              text: "What do you want to contact BSR about?"
             },
             value: {
               text: (data['request-about-what'] | capitalize) or "Building"
@@ -226,7 +225,7 @@
         rows: [
           {
             key: {
-              text: "Your name"
+              text: "Contact name"
             },
             value: {
               text:  (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
@@ -236,7 +235,7 @@
                 {
                   href: "about-the-person/enter-your-name",
                   text: "Change",
-                  visuallyHiddenText: "your name"
+                  visuallyHiddenText: "contact name"
                 }
               ]
             }
@@ -262,7 +261,7 @@
       }) }}
 
       {% if data['enquiry-about'] == 'make a complaint'  %}
-      <h2 class="govuk-heading-m">About the complaint</h2>
+      <h2 class="govuk-heading-m">Complaint details</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [          
@@ -305,7 +304,7 @@
               text: "Who have you already contacted about the problem?"
             },
             value: {
-              text: data['complaint-problem-who'] or "Yes"
+              text: data['complaint-problem-who'] or "Principal accountable person"
             },
             actions: {
               items: [
@@ -379,7 +378,7 @@
         rows: [
           {
             key: {
-              text: "What question do you want to ask?"
+              text: "Your question"
             },
             value: {
               text: data['question-details'] or "Are the fire doors in my building safe?"
@@ -441,7 +440,7 @@
           },
           {
             key: {
-              text: "Contact details"
+              text: "Your contact details"
             },
             value: {
               html: (data['ap-email'] or 'admin@abc.com') + "<br>" + (data['ap-phone'] or '07123456')
