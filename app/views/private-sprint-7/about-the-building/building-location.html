@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Building address" %}
+{% set title = "Tell us the easting and northing for the proposed building" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -23,19 +23,29 @@
             isPageHeading: true
           }
         }) %}
-          {{ govukInput({
-            label: {
-              text: 'Postcode'
-            },
-            id: "building-postcode",
-            name: "building-postcode",
-            autocomplete: "building-postcode",
-            classes: "govuk-input--width-20"
-          }) }}
+
+        {{ govukInput({
+          label: {
+            text: 'Easting'
+          },
+          id: "location-easting",
+          name: "location-easting",
+          autocomplete: "location-easting",
+          classes: "govuk-input--width-20"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: 'Northing'
+          },
+          id: "location-northing",
+          name: "location-northing",
+          autocomplete: "location-northing",
+          classes: "govuk-input--width-20"
+        }) }}
 
         {% endcall %}
 
-        <p><a href="/private-sprint-7/about-the-building/which-region">I don't know the postcode</a></p>
 
         {{ govukButton({
           text: "Continue"

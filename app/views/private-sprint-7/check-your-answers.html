@@ -1,0 +1,490 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check your answers" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters-from-desktop">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <h2 class="govuk-heading-m">About the request</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "How can BSR help you?"
+            },
+            value: {
+              text: (data['enquiry-about'] | capitalize) or "Advice"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-request/complaint-or-advice",
+                  text: "Change",
+                  visuallyHiddenText: "How can the Building Safety Regulator help you?"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What do you want to contact BSR about?"
+            },
+            value: {
+              text: (data['request-about-what'] | capitalize) or "Building"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-request/complaint-or-advice-about",
+                  text: "Change",
+                  visuallyHiddenText: "What do you want to contact the Building Safety Regulator about?"
+                }
+              ]
+            }
+          } if data['enquiry-about'] == "make a complaint",
+          {
+            key: {
+              text: "Who are you?"
+            },
+            value: {
+              text: (data['type-of-person'] | capitalize) or "Resident"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-request/who-are-you",
+                  text: "Change",
+                  visuallyHiddenText: "Who are you?"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% if data['request-about-what'] == 'building'  %}
+      <h2 class="govuk-heading-m">About the building</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "where the building is located"
+                }
+              ]
+            }
+          } if data['building-region'],
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "<p>Whitehall 2<br>Leeds, LS1</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/postcode-lookup",
+                  text: "Change",
+                  visuallyHiddenText: "the building address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Building occupied?"
+            },
+            value: {
+              text: (data['building-status'] | capitalize) or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/is-the-building-occupied",
+                  text: "Change",
+                  visuallyHiddenText: "is the building occupied"
+                }
+              ]
+            }
+          } if data['type-of-person'] == "professional",
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-size'] | capitalize) or "7 or more floors"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-floors",
+                  text: "Change",
+                  visuallyHiddenText: "building height"
+                }
+              ]
+            }
+          } if data['type-of-person'] != "professional" and data['region'],
+          {
+            key: {
+              text: "Number of residential units"
+            },
+            value: {
+              text: (data['number-units'] | capitalize) or "2 or more units"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-units",
+                  text: "Change",
+                  visuallyHiddenText: "number of residential units"
+                }
+              ]
+            }
+          } if data['type-of-person'] != "professional" and data['region'],
+          {
+            key: {
+              text: "Number of floors"
+            },
+            value: {
+              text: (data['number-floors'] | capitalize) or "9"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/prof-number-of-floors",
+                  text: "Change",
+                  visuallyHiddenText: "number of floors"
+                }
+              ]
+            }
+          } if data['type-of-person'] == "professional",
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-height'] | capitalize) or "20m"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/prof-height-of-building",
+                  text: "Change",
+                  visuallyHiddenText: "height of the building"
+                }
+              ]
+            }
+          } if data['type-of-person'] == "professional",
+          {
+            key: {
+              text: "Number of units"
+            },
+            value: {
+              text: (data['number-units'] | capitalize) or "85"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/prof-number-of-units",
+                  text: "Change",
+                  visuallyHiddenText: "number of residential units"
+                }
+              ]
+            }
+          } if data['type-of-person'] == "professional"
+        ]
+      }) }}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">About you</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Contact name"
+            },
+            value: {
+              text:  (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "contact name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Contact details"
+            },
+            value: {
+              html: "You have not provided contact details. We will not be able to update you with any action we take about your complaint" if data['contact-email'] == null and data['contact-number'] == null else (data['contact-email'] or "john@test.com") + "<br>" + (data['contact-number'] or "012345678")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "your contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% if data['enquiry-about'] == 'make a complaint'  %}
+      <h2 class="govuk-heading-m">Complaint details</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [          
+          {
+            key: {
+              text: "What is the problem?"
+            },
+            value: {
+              text: data['complaint-problem-details'] or "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-details",
+                  text: "Change",
+                  visuallyHiddenText: "complaint details"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "When did you first notice the issue?"
+            },
+            value: {
+              text: data['complaint-problem-appear-day'] + "-" + data['complaint-problem-appear-month'] + "-" + data['complaint-problem-appear-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-details",
+                  text: "Change",
+                  visuallyHiddenText: "complaint details"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "Who have you already contacted about the problem?"
+            },
+            value: {
+              text: data['complaint-problem-who'] or "Principal accountable person"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-details",
+                  text: "Change",
+                  visuallyHiddenText: "complaint details"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "building",
+          {
+            key: {
+              text: "Person or organisation the complaint is about"
+            },
+            value: {
+              text: data['complaint-about-who'] or "My landlord" 
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-about-who",
+                  text: "Change",
+                  visuallyHiddenText: "complaint about"
+                }
+              ]
+            }
+          } if data['request-about-what'] == "person",
+          {
+            key: {
+              text: "Details of the complaint"
+            },
+            value: {
+              text: data['complaint-details'] or "My landlord has not fixed the fire doors" 
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-about-who",
+                  text: "Change",
+                  visuallyHiddenText: "complaint about"
+                }
+              ]
+            }
+          } if data['request-about-what'] != "building",
+          {
+            key: {
+              text: "Supporting information"
+            },
+            value: {
+              html: "<p>image-of-corridor.png<br>4238-17-10-2023.jpeg<br>report.docx</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "supporting-information/review-uploads",
+                  text: "Change",
+                  visuallyHiddenText: "supporting information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+      {% if data['enquiry-about'] == 'ask a question'  %}
+        <h2 class="govuk-heading-m">About the question</h2>
+        {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Your question"
+            },
+            value: {
+              text: data['question-details'] or "Are the fire doors in my building safe?"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-request/enter-advice-required",
+                  text: "Change",
+                  visuallyHiddenText: "question about"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+
+      {% if data['enquiry-about'] == 'complaint'  %}
+
+      <h2 class="govuk-heading-m">About the accountable person</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Organisation or Name"
+            },
+            value: {
+              text: data['ap-name'] | capitalize or "ABC Housing"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "accountable person organisation or name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Their role"
+            },
+            value: {
+              text: data['ap-role'] or "Landlord"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "accountable person role"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Your contact details"
+            },
+            value: {
+              html: (data['ap-email'] or 'admin@abc.com') + "<br>" + (data['ap-phone'] or '07123456')
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "accountable person contact details"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "When contacted"
+            },
+            value: {
+              html: (data['ap-contacted-date-day']) + "-" + (data['ap-contacted-date-month']) + "-" + (data['ap-contacted-date-year'])
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/when-contacted-ap",
+                  text: "Change",
+                  visuallyHiddenText: "when contacted accountable person"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes'
+        ]
+      }) }}
+
+      {% endif %}
+
+      <form action="" method="post">
+        <input type="hidden" name="answers-checked" value="true">
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+      </form>
+   
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Building address" %}
+{% set title = "Your contact details" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,28 +15,40 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the building</span>
+        <span class="govuk-caption-l">About you</span>
         {% call govukFieldset({
           legend: {
             text: title,
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
           }
+          
         }) %}
+
+        {% if data['type-of-person'] == "resident" or data['type-of-person'] == "public" or data['type-of-person'] == "other" %}
+          <p>If you do not want to give us your name and contact details, you can enter the contacts of someone you trust</p> 
+        {% endif %}
+
           {{ govukInput({
             label: {
-              text: 'Postcode'
+              text: 'Email'
             },
-            id: "building-postcode",
-            name: "building-postcode",
-            autocomplete: "building-postcode",
+            id: "contact-email",
+            name: "contact-email",
             classes: "govuk-input--width-20"
           }) }}
 
+          {{ govukInput({
+            label: {
+              text: 'Telephone or mobile number'
+            },
+            id: "contact-number",
+            name: "contact-number",
+            classes: "govuk-input--width-20"
+          }) }}
+          
         {% endcall %}
-
-        <p><a href="/private-sprint-7/about-the-building/which-region">I don't know the postcode</a></p>
-
+        
         {{ govukButton({
           text: "Continue"
         }) }}
