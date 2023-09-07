@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+{% set title = "We have received your question" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">{{ title }}</h1>
+        <div class="govuk-panel__body">
+          Reference number<br><strong><span aria-label="H, D, J, 2, 1, 2, 3, F">HDJ2123F</span></strong>
+        </div>
+      </div>
+
+      <p>We have sent you a confirmation email that includes your reference number.</p>
+
+      <p>We will review your question and contact you with an answer. This may take up to 21 working days.</p>
+
+      </div>
+  </div>
+
+{% endblock %}

@@ -15,6 +15,11 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
 
+    {% set emailsV13 %}
+      <p><a href="private-sprint-8/emails/question-email">Question - Confirmation</a></p>
+      <p><a href="private-sprint-8/emails/complaint-case-closed-email">Case Closed</a></p>
+    {% endset %}
+    
     {% set emailsV12 %}
       <p><a href="private-sprint-7/emails/complaint-email">Complaint - Confirmation</a></p>
       <p><a href="private-sprint-7/emails/complaint-investigation-email">Complaint - Investigation</a></p>
@@ -91,14 +96,19 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     {% endset %}
 
     <h2 class="govuk-heading-m">Private Beta Current</h2>
+    <p><a href="private-sprint-8/start">Sprint 8 (v13) - Advice</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emailsV13
+    }) }}
+    
+
+    <h2 class="govuk-heading-m">Private Beta</h2>
     <p><a href="private-sprint-7/start">Sprint 7 (v12 go live) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",
       html: emailsV12
     }) }}
-    
-
-    <h2 class="govuk-heading-m">Private Beta</h2>
     <p><a href="private-sprint-6/start">Sprint 6 (v11) - Advice and complaints</a></p>
     {{ govukDetails({
       summaryText: "Emails",
