@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+{% set title = "Share your complaint details" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>You need to consent to sharing information before we take enforcement action against [accountable person]</p>
+
+        <p>Without your consent we will not be able to take your complaint any further.</p>
+
+        <p>We will share your:</p>
+        
+        <ul class="govuk-list govuk-list--bullet">
+          <li>complaint details</li>
+          <li>name</li>
+          <li>contact details</li>
+          <li>building address</li>
+        </ul>
+
+        {{ govukInput({
+          label: {
+            text: 'Confirm your email'
+          },
+          hint: {
+            text: "This is the email address that you used to make the complaint"
+          },
+          id: "contact-email",
+          name: "contact-email",
+          classes: "govuk-input--width-20"
+        }) }}
+        {{ govukRadios({
+          name: "where-do-you-live",
+          fieldset: {
+            legend: {
+              text: "Do you consent to sharing your complaint details?",
+              classes: "govuk-fieldset__label--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

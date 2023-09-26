@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your name" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+          {% if data['type-of-person'] == "resident" or data['type-of-person'] == "public" or data['type-of-person'] == "other" %}
+          <p>If you do not want to give us your name and contact details, you can enter the name of someone you trust</p>
+          {% endif %}
+
+          {{ govukInput({
+            label: {
+              text: 'First name'
+            },
+            id: "contact-first-name",
+            name: "contact-first-name",
+            value: data['contact-first-name'],
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: 'Last name'
+            },
+            id: "contact-last-name",
+            name: "contact-last-name",
+            value: data['contact-last-name'],
+            classes: "govuk-input--width-20"
+          }) }}
+         
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

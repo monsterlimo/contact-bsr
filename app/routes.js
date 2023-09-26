@@ -23,3 +23,5 @@ require('./routes/private-sprint-5')(router)
 require('./routes/private-sprint-6')(router)
 require('./routes/private-sprint-7')(router)
 require('./routes/private-sprint-8')(router)
+
+require('./routes/public-sprint-10')(router)
