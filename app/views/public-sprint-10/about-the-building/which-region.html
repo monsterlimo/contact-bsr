@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "In which part of the UK is the building?" %}
+{% set title = "Where is the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,6 +16,7 @@
 
       <form action="" method="post">
 
+        <span class="govuk-caption-l">About the building</span>
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
           name: "building-region",
@@ -27,7 +28,7 @@
             }
           },
           hint: {
-            text: "We need to know this as the Building Safety Regulator does not operate in all parts of the UK."
+            text: "We need to know this because the Building Safety Regulator does not operate in all parts of the UK."
           },
           items: [
             {

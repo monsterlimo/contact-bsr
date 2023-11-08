@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Upload supporting information" %}
+{% set title = "Upload supporting information (optional)" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -19,13 +19,13 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters-from-desktop">
-      <span class="govuk-caption-l">About the occurrence</span>
+      <span class="govuk-caption-l">About the complaint</span>
       <h1 class="govuk-heading-xl">{{ title }}</h1>
 
       <form action="" method="post">
 
     <div id="file-upload-1-hint" class="govuk-hint">
-      You can upload supporting information. For example scanned documents or photos from your phone. You can upload more than one file at a time. Each file must be smaller than 100MB.
+      You can upload supporting information. For example documents or photos from your phone. You can upload more than one file at a time. Each file must be smaller than 100MB.
     </div>
 
     <p id="upload-update" class="govuk-body govuk-!-display-none" aria-live="assertive" aria-relevant="all">1 of 2 files uploaded</p>
@@ -97,7 +97,9 @@ function checkUploads() {
   filesUploaded =document.getElementsByClassName('govuk-tag--green').length
 
   uploadUpdate.textContent = `${filesUploaded} of ${filesUploading + filesUploaded} files uploaded`;
-  uploadUpdate.classList.remove("govuk-!-display-none");
+  if (filesUploaded > 0 || filesUploading > 0) {
+    uploadUpdate.classList.remove("govuk-!-display-none");
+  }
 }
 
 

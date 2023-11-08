@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter the building address" %}
+{% set title = "Enter the building's address" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -14,8 +14,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">About the building</span>
       <form action="" method="post">
-
         {% call govukFieldset({
           legend: {
             text: title,
