@@ -22,7 +22,7 @@
         rows: [
           {
             key: {
-              text: "How can BSR help you?"
+              text: "How can we help you?"
             },
             value: {
               text: (data['enquiry-about'] | capitalize) or "Advice"
@@ -39,7 +39,7 @@
           },
           {
             key: {
-              text: "What do you want to contact BSR about?"
+              text: "What do you want complain about?"
             },
             value: {
               text: (data['request-about-what'] | capitalize) or "Building"
@@ -267,7 +267,7 @@
         rows: [          
           {
             key: {
-              text: "What is the problem?"
+              text: "What is the issue?"
             },
             value: {
               text: data['complaint-problem-details'] or "Yes"
@@ -476,6 +476,8 @@
       }) }}
 
       {% endif %}
+
+      <p>You can print or save your answers after you have submitted your {{ "question" if data['enquiry-about'] == "ask a question" else "complaint" }}.</p>
 
       <form action="" method="post">
         <input type="hidden" name="answers-checked" value="true">
